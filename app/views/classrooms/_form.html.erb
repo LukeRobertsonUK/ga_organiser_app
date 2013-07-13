@@ -1,29 +1,32 @@
 <%= form_for(@classroom) do |f| %>
-  <% if @classroom.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@classroom.errors.count, "error") %> prohibited this classroom from being saved:</h2>
+<% if @classroom.errors.any? %>
+<div id="error_explanation">
+  <h2><%= pluralize(@classroom.errors.count, "error") %> prohibited this classroom from being saved:</h2>
 
-      <ul>
-      <% @classroom.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
-  </div>
-  <div class="field">
-    <%= f.label :seating_capacity %><br />
-    <%= f.number_field :seating_capacity %>
-  </div>
-  <div class="field">
-    <%= f.label :classroom_image %><br />
-    <%= f.text_field :classroom_image %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+  <ul>
+    <% @classroom.errors.full_messages.each do |msg| %>
+    <li><%= msg %></li>
+    <% end %>
+  </ul>
+</div>
+<% end %>
+<div class="field">
+  <%= f.label :site_id, "Campus" %>
+  <%= f.select(:site_id, Site.all.map {|s| [s.name, s.id]}) %>
+</div>
+<div class="field">
+  <%= f.label :name %><br />
+  <%= f.text_field :name %>
+</div>
+<div class="field">
+  <%= f.label :seating_capacity %><br />
+  <%= f.number_field :seating_capacity %>
+</div>
+<div class="field">
+  <%= f.label :classroom_image %><br />
+  <%= f.text_field :classroom_image %>
+</div>
+<div class="actions">
+  <%= f.submit %>
+</div>
 <% end %>

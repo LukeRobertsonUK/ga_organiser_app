@@ -1,0 +1,10 @@
+<%= f.fields_for :lessons do |lesson| %>
+  <%= lesson_form.label :lesson_date %>
+    <%= lesson_form.text_field :lesson_date %>
+    <%= lesson_form.label :time_slot %>
+    <%= lesson_form.text_field :time_slot %>
+
+  <%= lesson_form.collection_select :classroom_id, Classroom.all, :id, :name %>
+  <%= lesson_form.link_to_remove 'Remove' %>
+<%end%>
+<%= f.link_to_add 'Add a lesson', :lessons %>

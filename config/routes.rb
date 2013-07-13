@@ -7,6 +7,7 @@ GaOrganiserApp::Application.routes.draw do
 
   resources :sites
 
+  resources :sessions, only: [:create, :destroy]
 
   resources :enrolled_user_comments
 
