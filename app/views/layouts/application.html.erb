@@ -18,6 +18,15 @@
       <li><%= link_to('Enrollments', enrollments_path) %></li>
       <li><%= link_to('Announcements', announcements_path) %></li>
 
+<% if current_user %>
+    <p><%= "Logged in as #{current_user.email}" %> |
+    <%= link_to 'Logout', session_path(session), method: :delete, data: {confirm: 'Are you sure?'} %>
+  </p>
+    <%else%>
+    <p>
+      <%= link_to "Not currently logged-in" ,login_path, class:"login_status" %>
+    </p>
+  <%end%>
 
 
     <div class="container">

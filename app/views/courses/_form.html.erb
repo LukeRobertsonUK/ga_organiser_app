@@ -16,6 +16,10 @@
   <%= f.text_field :name %>
 </div>
 <div class="field">
+  <%= f.label :site_id, "Campus" %>
+  <%= f.select(:site_id, Site.all.map {|c| [c.name, c.id]}) %>
+</div>
+<div class="field">
   <%= f.label :course_category_id, "Course Category" %>
   <%= f.select(:course_category_id, CourseCategory.all.map {|c| [c.name, c.id]}) %>
 </div>

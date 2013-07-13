@@ -11,15 +11,31 @@
 </p>
 
 <p>
-  <b>Advertised fee:</b>
-  <%= @course.advertised_fee %>
-</p>
-
-<p>
   <b>Description:</b>
   <%= @course.description %>
 </p>
 
+<p>
+  <b>Advertised fee:</b>
+  <%= @course.advertised_fee %>
+</p>
+
+This course will take place at
+<%= @course.site.name %>
+at the following times:
+<ul>
+  <% @course.lessons.each do |lesson| %>
+  <li>
+    <%= lesson.lesson_date %>
+    <%= lesson.time_slot %>
+    <%= lesson.classroom.name %>
+  </li>
+  <%end%>
+
+
+</ul>
+
+<%= link_to "Enroll Me!", new_enrollment_path(course_id: @course.id) %>
 
 <%= link_to 'Edit', edit_course_path(@course) %> |
 <%= link_to 'Back', courses_path %>
