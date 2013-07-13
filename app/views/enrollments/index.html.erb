@@ -1,0 +1,27 @@
+<h1>Listing enrollments</h1>
+
+<table>
+  <tr>
+    <th>Involvement</th>
+    <th>Fee</th>
+    <th>Grade</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @enrollments.each do |enrollment| %>
+  <tr>
+    <td><%= enrollment.involvement %></td>
+    <td><%= enrollment.fee %></td>
+    <td><%= enrollment.grade %></td>
+    <td><%= link_to 'Show', enrollment %></td>
+    <td><%= link_to 'Edit', edit_enrollment_path(enrollment) %></td>
+    <td><%= link_to 'Destroy', enrollment, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Enrollment', new_enrollment_path %>

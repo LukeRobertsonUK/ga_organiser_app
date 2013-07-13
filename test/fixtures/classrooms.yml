@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  name: MyString
+  seating_capacity: 1
+  classroom_image: MyString
+
+two:
+  name: MyString
+  seating_capacity: 1
+  classroom_image: MyString

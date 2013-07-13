@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Comment text:</b>
+  <%= @enrolled_user_comment.comment_text %>
+</p>
+
+<p>
+  <b>Comment image:</b>
+  <%= @enrolled_user_comment.comment_image %>
+</p>
+
+
+<%= link_to 'Edit', edit_enrolled_user_comment_path(@enrolled_user_comment) %> |
+<%= link_to 'Back', enrolled_user_comments_path %>

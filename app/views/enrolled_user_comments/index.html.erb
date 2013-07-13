@@ -1,0 +1,25 @@
+<h1>Listing enrolled_user_comments</h1>
+
+<table>
+  <tr>
+    <th>Comment text</th>
+    <th>Comment image</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @enrolled_user_comments.each do |enrolled_user_comment| %>
+  <tr>
+    <td><%= enrolled_user_comment.comment_text %></td>
+    <td><%= enrolled_user_comment.comment_image %></td>
+    <td><%= link_to 'Show', enrolled_user_comment %></td>
+    <td><%= link_to 'Edit', edit_enrolled_user_comment_path(enrolled_user_comment) %></td>
+    <td><%= link_to 'Destroy', enrolled_user_comment, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Enrolled user comment', new_enrolled_user_comment_path %>

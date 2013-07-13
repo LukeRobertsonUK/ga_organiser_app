@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Announcement text:</b>
+  <%= @announcement.announcement_text %>
+</p>
+
+<p>
+  <b>Announcement image:</b>
+  <%= @announcement.announcement_image %>
+</p>
+
+
+<%= link_to 'Edit', edit_announcement_path(@announcement) %> |
+<%= link_to 'Back', announcements_path %>

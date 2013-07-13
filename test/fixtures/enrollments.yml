@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  involvement: MyString
+  fee: 9.99
+  grade: MyString
+
+two:
+  involvement: MyString
+  fee: 9.99
+  grade: MyString
