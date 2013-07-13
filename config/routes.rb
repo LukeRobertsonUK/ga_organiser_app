@@ -35,6 +35,11 @@ GaOrganiserApp::Application.routes.draw do
   resources :users
 
 
+  root to: 'courses#index'
+
+  get '/login', to: "sessions#new"
+
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
