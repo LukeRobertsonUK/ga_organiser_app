@@ -11,6 +11,12 @@
 </p>
 
 <p>
+  <%= @course.one_liner %>
+</p>
+
+
+
+<p>
   <b>Description:</b>
   <%= @course.description %>
 </p>
@@ -39,3 +45,9 @@ at the following times:
 
 <%= link_to 'Edit', edit_course_path(@course) %> |
 <%= link_to 'Back', courses_path %>
+
+The following users are enrolled on this course:
+
+<%@course.enrollments.all.each do |enrollment| %>
+  <%=enrollment.user.name%>
+  <%end%>

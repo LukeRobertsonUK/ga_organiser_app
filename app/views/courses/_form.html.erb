@@ -23,6 +23,11 @@
   <%= f.label :course_category_id, "Course Category" %>
   <%= f.select(:course_category_id, CourseCategory.all.map {|c| [c.name, c.id]}) %>
 </div>
+
+<div class="field">
+  <%= f.label :one_liner %><br />
+  <%= f.text_field :one_liner %>
+</div>
 <div class="field">
   <%= f.label :course_image %><br />
   <%= f.text_field :course_image %>

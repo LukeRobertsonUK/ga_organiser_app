@@ -1,6 +1,9 @@
 class EnrollmentsController < ApplicationController
   # GET /enrollments
   # GET /enrollments.json
+  load_and_authorize_resource
+  before_filter :authenticate
+
   def index
     @enrollments = Enrollment.all
 
@@ -25,7 +28,8 @@ class EnrollmentsController < ApplicationController
   # GET /enrollments/new.json
   def new
     @enrollment = Enrollment.new
-
+    @course_id = params[:course_id]
+    @user_id = session[:user_id]
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @enrollment }

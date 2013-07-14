@@ -1,6 +1,10 @@
 class CoursesController < ApplicationController
   # GET /courses
   # GET /courses.json
+    load_and_authorize_resource
+    before_filter :authenticate
+
+
   def index
     @courses = Course.all
 
@@ -57,9 +61,10 @@ class CoursesController < ApplicationController
   # PUT /courses/1.json
   def update
     @course = Course.find(params[:id])
-
+    @course
     respond_to do |format|
       if @course.update_attributes(params[:course])
+        Announcement.create! announcement_text: "Please note we have updated details for #{@course.name}!"
         format.html { redirect_to @course, notice: 'Course was successfully updated.' }
         format.json { head :no_content }
       else

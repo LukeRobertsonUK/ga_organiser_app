@@ -1,6 +1,8 @@
 class LessonsController < ApplicationController
   # GET /lessons
   # GET /lessons.json
+  load_and_authorize_resource
+
   def index
     @lessons = Lesson.all
 
@@ -12,6 +14,8 @@ class LessonsController < ApplicationController
 
   # GET /lessons/1
   # GET /lessons/1.json
+  before_filter :authenticate
+
   def show
     @lesson = Lesson.find(params[:id])
 

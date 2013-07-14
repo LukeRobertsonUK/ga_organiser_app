@@ -10,4 +10,8 @@ class User < ActiveRecord::Base
   validates :password, presence: true, on: :create
 
 
+  def user_access?(user_access)
+  self.user_access == user_access
+end
+
 end

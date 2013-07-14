@@ -1,4 +1,6 @@
 GaOrganiserApp::Application.routes.draw do
+
+
   get "sessions/new"
 
   get "sessions/create"
@@ -35,10 +37,12 @@ GaOrganiserApp::Application.routes.draw do
 
   resources :users
 
+  get '/home', to: "home#index"
 
-  root to: 'courses#index'
+  root to: 'home#index'
 
   get '/login', to: "sessions#new"
+
 
 
   # The priority is based upon order of creation:

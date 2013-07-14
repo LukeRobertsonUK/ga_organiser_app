@@ -1,6 +1,9 @@
 class UsersController < ApplicationController
   # GET /users
   # GET /users.json
+  load_and_authorize_resource
+   before_filter :authenticate
+
   def index
     @users = User.all
     respond_to do |format|

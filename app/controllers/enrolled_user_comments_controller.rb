@@ -1,6 +1,9 @@
 class EnrolledUserCommentsController < ApplicationController
   # GET /enrolled_user_comments
   # GET /enrolled_user_comments.json
+  load_and_authorize_resource
+  before_filter :authenticate
+
   def index
     @enrolled_user_comments = EnrolledUserComment.all
 

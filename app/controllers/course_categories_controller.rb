@@ -1,6 +1,9 @@
 class CourseCategoriesController < ApplicationController
   # GET /course_categories
   # GET /course_categories.json
+  load_and_authorize_resource
+  before_filter :authenticate
+
   def index
     @course_categories = CourseCategory.all
 
