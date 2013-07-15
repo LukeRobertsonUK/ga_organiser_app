@@ -13,5 +13,7 @@ class Course < ActiveRecord::Base
   scope :future, lambda {joins(:lessons).where('lessons.lesson_date > ?', Time.now)}
   scope :past, lambda {joins(:lessons).where('lessons.lesson_date < ?', Time.now)}
 
-
+  def self.get_courses_ordered_by_first_lesson
+    binding.pry
+  end
 end

@@ -1,16 +1,27 @@
 <h1> this should be the user dashboard </h1>
 
-<h3>You are enrolled in the following courses</h3>
+<h3>You are enrolled in the following upcoming courses</h3>
 <ul>
-  <% @enrollments.each do |enrollment| %>
-    <li><%= link_to enrollment.course.name, course_path(enrollment.course) %>
-           <%enrollment.course.lessons.each do |lesson| %>
+  <% @future_user_courses.each do |course| %>
+    <li><%= link_to course.name, course_path(course) %>
+           <%course.lessons.each do |lesson| %>
             <%=lesson.lesson_date%>,
             <%=lesson.time_slot%>
             <br>
             <%end%>
+    </li>
+  <%end%>
+</ul>
 
-
+<h3>Previous courses</h3>
+<ul>
+  <% @past_user_courses.each do |course| %>
+    <li><%= link_to course.name, course_path(course) %>
+           <%course.lessons.each do |lesson| %>
+            <%=lesson.lesson_date%>,
+            <%=lesson.time_slot%>
+            <br>
+            <%end%>
     </li>
   <%end%>
 </ul>

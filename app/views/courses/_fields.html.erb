@@ -2,7 +2,7 @@
   <%= lesson_form.label :lesson_date %>
   <%= lesson_form.date_select :lesson_date %>
    <%= lesson_form.label :time_slot %>
-    <%= lesson_form.select :lesson_date, ["Day", "Evening"] %>
+    <%= lesson_form.select :time_slot, ["Day", "Evening"] %>
   <%= lesson_form.collection_select :classroom_id, Classroom.all, :id, :name%>
   <%= lesson_form.link_to_remove 'Remove' %>
 <%end%>

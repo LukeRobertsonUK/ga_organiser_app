@@ -3,10 +3,10 @@ class UserDashboardController < ApplicationController
 
 
   def index
-      @future_courses = Course.future.all.uniq
-      @past_courses = Course.past.all.uniq
       @announcements = Announcement.order('updated_at DESC').limit(10)
-      @enrollments = Enrollment.where(user_id: session[:user_id])
+      @future_user_courses = current_user.courses.future.uniq
+      @past_user_courses = current_user.courses.past.uniq
+      @courses = Course.get_courses_ordered_by_first_lesson
   end
 
 
