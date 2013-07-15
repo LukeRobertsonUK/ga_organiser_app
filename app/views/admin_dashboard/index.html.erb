@@ -31,6 +31,44 @@
       <% end %>
     </ul>
 
+    <%unless @clashing_lessons.blank?%>
+    <h4>Clashing Lessons!</h4>
+    <p>WARNING: You have created 2 or more lessons that take place in the same classroom at the same time!</p>
+    <ul>
+    <% @clashing_lessons.each do |clashing_lesson| %>
+      <li>Date:
+    <%=clashing_lesson.lesson_date%> | Time:
+    <%=clashing_lesson.time_slot%> | Course:
+    <%=clashing_lesson.course.name%> | Campus:
+    <%=clashing_lesson.classroom.site.name%> | Classroom:
+    <%=clashing_lesson.classroom.name%>
+  </li>
+    <%end%>
+  </ul>
+    <%end%>
+
+<%unless @lessonless_courses.blank?%>
+<h4>Courses with no lessons</h4>
+<p>WARNING: You have yet to create lessons for the following courses</p>
+    <ul>
+    <% @lessonless_courses.each do |course| %>
+      <li>
+    Course:
+    <%=course.name%> | Campus:
+    <%=course.site.name%>
+  </li>
+    <%end%>
+  </ul>
+
+
+
+
+<%end%>
+
+
+
+
+
     <h4>GA Announcements</h4>
     <p><%=link_to "Create A New Announcement", new_announcement_path %></p>
     <p><%= link_to "See All Announcements", announcements_path%></p>

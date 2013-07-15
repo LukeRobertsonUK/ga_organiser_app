@@ -2,6 +2,14 @@
 
 <h4><%= @course.name %></h4>
 
+<%if @course.enrollments %>
+<%if @course.enrollments.where(user_id: @user.id).first%>
+<h3>
+Grade Achieved:
+<%=@course.enrollments.where(user_id: @user.id).first.grade%>
+<%end%>
+<%end%>
+</h3>
 <% if can? :edit, Course %>
 <%= link_to 'Edit Course Details', edit_course_path(@course) %>
 <br>
@@ -62,7 +70,7 @@ at the following times:
 
 
 <%if @course.enrollments %>
-<% if can? :edit, Course || @course.users.include?(@user)  %>
+<% if (can? :edit, Course) || @course.users.include?(@user)  %>
 <p>The following users are enrolled on this course</p>
 <ul>
   <%@course.enrollments.all.each do |enrollment| %>

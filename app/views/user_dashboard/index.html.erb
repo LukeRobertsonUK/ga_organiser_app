@@ -4,11 +4,7 @@
 <ul>
   <% @future_user_courses.each do |course| %>
     <li><%= link_to course.name, course_path(course) %>
-           <%course.lessons.each do |lesson| %>
-            <%=lesson.lesson_date%>,
-            <%=lesson.time_slot%>
-            <br>
-            <%end%>
+           <%= course.lessons.order(:lesson_date).first.lesson_date %>
     </li>
   <%end%>
 </ul>
@@ -17,11 +13,7 @@
 <ul>
   <% @past_user_courses.each do |course| %>
     <li><%= link_to course.name, course_path(course) %>
-           <%course.lessons.each do |lesson| %>
-            <%=lesson.lesson_date%>,
-            <%=lesson.time_slot%>
-            <br>
-            <%end%>
+          <%= course.lessons.order(:lesson_date).first.lesson_date %>
     </li>
   <%end%>
 </ul>
