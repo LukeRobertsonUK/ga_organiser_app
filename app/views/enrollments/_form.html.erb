@@ -11,23 +11,33 @@
     </div>
   <% end %>
 
+<%if can? :manage, Enrollment %>
   <div class="field">
-    <%= f.label :involvement %><br />
-    <%= f.text_field :involvement %>
+    <%= f.label :involvement %>
+    <%= f.select :involvement, ["student", "instructor"], selected: "student" %>
   </div>
   <div class="field">
-    <%= f.label :fee %><br />
+    <%= f.label :fee %>
     <%= f.text_field :fee %>
   </div>
   <div class="field">
-    <%= f.label :grade %><br />
+    <%= f.label :grade %>
     <%= f.text_field :grade %>
   </div>
-  <div class="field">
-    <%= f.hidden_field :user_id, {value: @user_id} %>
-    <%= f.hidden_field :course_id, {value: @course_id} %>
+<%end%>
 
+<%if can? :manage, Enrollment %>
+    <%= f.label :user_id, "User" %>
+    <%= f.select(:user_id, User.all.map {|u| [u.name, u.id]}) %>
+  <%else%>
+    <%=f.hidden_field :user_id, {value: @user.id} %>
+  <%end%>
+
+
+  <div class="field">
+    <%= f.hidden_field :course_id, {value: @course.id} %>
  </div>
+
 
   <div class="actions">
     <%= f.submit %>

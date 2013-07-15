@@ -23,10 +23,10 @@
     <%= f.label :telephone %><br />
     <%= f.text_field :telephone %>
   </div>
-  <div class="field">
-    <%= f.label :site_image %><br />
-    <%= f.text_field :site_image %>
-  </div>
+   <div class="field">
+      <%= f.label :site_image %>
+      <%= f.file_field :site_image %>
+    </div>
   <div class="field">
     <%= f.label :directions %><br />
     <%= f.text_area :directions %>
@@ -35,3 +35,9 @@
     <%= f.submit %>
   </div>
 <% end %>
+
+   <% if @site.persisted? %>
+      <% unless @site.site_image.blank?%>
+      <%= image_tag @site.site_image.thumb.url %>
+          <% end %>
+    <% end %>

@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
   validates :email, presence: true
   validates :email, uniqueness: true
   validates :password, presence: true, on: :create
-
+  mount_uploader :user_image, UserImageUploader
 
   def user_access?(user_access)
   self.user_access == user_access

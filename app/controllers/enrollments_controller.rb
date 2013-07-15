@@ -5,7 +5,7 @@ class EnrollmentsController < ApplicationController
   before_filter :authenticate
 
   def index
-    @enrollments = Enrollment.all
+    @enrollments = Enrollment.order('course_id')
 
     respond_to do |format|
       format.html # index.html.erb
@@ -28,8 +28,8 @@ class EnrollmentsController < ApplicationController
   # GET /enrollments/new.json
   def new
     @enrollment = Enrollment.new
-    @course_id = params[:course_id]
-    @user_id = session[:user_id]
+    @course = Course.where(id: params[:course_id]).first
+    @user = User.where(id: session[:user_id]).first
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @enrollment }
@@ -39,16 +39,22 @@ class EnrollmentsController < ApplicationController
   # GET /enrollments/1/edit
   def edit
     @enrollment = Enrollment.find(params[:id])
+    @course = @enrollment.course
+    @user = @enrollment.user
   end
 
   # POST /enrollments
   # POST /enrollments.json
   def create
+
+    unless params[:enrollment][:user_id]
+      params[:enrollment][:user_id] = current_user.id
+    end
     @enrollment = Enrollment.new(params[:enrollment])
 
     respond_to do |format|
       if @enrollment.save
-        format.html { redirect_to @enrollment, notice: 'Enrollment was successfully created.' }
+        format.html { redirect_to @enrollment.course, notice: 'Enrollment was successfully created.' }
         format.json { render json: @enrollment, status: :created, location: @enrollment }
       else
         format.html { render action: "new" }

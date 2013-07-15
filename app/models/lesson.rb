@@ -3,6 +3,6 @@ class Lesson < ActiveRecord::Base
   belongs_to :course
   belongs_to :classroom
 
-
+# scope :future, lambda { where('lessons.lesson_date>?', Time.now) }
 
 end

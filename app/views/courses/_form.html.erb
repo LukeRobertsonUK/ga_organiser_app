@@ -12,7 +12,7 @@
 <% end %>
 
 <div class="field">
-  <%= f.label :name %><br />
+  <%= f.label :name %>
   <%= f.text_field :name %>
 </div>
 <div class="field">
@@ -25,19 +25,19 @@
 </div>
 
 <div class="field">
-  <%= f.label :one_liner %><br />
+  <%= f.label :one_liner %>
   <%= f.text_field :one_liner %>
 </div>
 <div class="field">
-  <%= f.label :course_image %><br />
-  <%= f.text_field :course_image %>
+  <%= f.label :course_image %>
+  <%= f.file_field :course_image %>
 </div>
 <div class="field">
-  <%= f.label :advertised_fee %><br />
+  <%= f.label :advertised_fee %>
   <%= f.text_field :advertised_fee %>
 </div>
 <div class="field">
-  <%= f.label :description %><br />
+  <%= f.label :description %>
   <%= f.text_area :description %>
 </div>
 <%= render 'fields', f: f %>
@@ -45,3 +45,9 @@
   <%= f.submit %>
 </div>
 <% end %>
+
+  <% if @course.persisted? %>
+      <% unless @course.course_image.blank?%>
+      <%= image_tag @course.course_image.thumb.url %>
+          <% end %>
+    <% end %>

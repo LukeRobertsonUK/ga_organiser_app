@@ -2,7 +2,7 @@ class CoursesController < ApplicationController
   # GET /courses
   # GET /courses.json
     load_and_authorize_resource
-    before_filter :authenticate
+    before_filter :authenticate, except: [:show]
 
 
   def index
@@ -18,6 +18,8 @@ class CoursesController < ApplicationController
   # GET /courses/1.json
   def show
     @course = Course.find(params[:id])
+    @user = current_user
+    @instructor_enrollments =@course.enrollments.where(involvement: "instructor")
 
     respond_to do |format|
       format.html # show.html.erb

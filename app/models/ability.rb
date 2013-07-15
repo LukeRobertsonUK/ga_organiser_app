@@ -14,11 +14,12 @@ class Ability
       can :read, Classroom
       can :read, Course
       can :read, Announcement
-      can :manage, Enrollment do |e|
+      can :create, Enrollment
+      can :destroy, Enrollment do |e|
           e.user_id == user.id
         end
       can :manage, EnrolledUserComment do |c|
-          c.enrollment.user_id == user.id
+         c.enrollment.user_id == user.id
       end
 
   end

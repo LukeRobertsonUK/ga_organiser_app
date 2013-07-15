@@ -8,10 +8,10 @@ class Course < ActiveRecord::Base
   has_many :users, :through => :enrollments
 
   accepts_nested_attributes_for :lessons, allow_destroy: true
+  mount_uploader :course_image, CourseImageUploader
 
-
-
-
+  scope :future, lambda {joins(:lessons).where('lessons.lesson_date > ?', Time.now)}
+  scope :past, lambda {joins(:lessons).where('lessons.lesson_date < ?', Time.now)}
 
 
 end

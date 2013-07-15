@@ -3,4 +3,5 @@ class Classroom < ActiveRecord::Base
   has_many :lessons
   has_many :courses, :through => :lessons
   belongs_to :site
+    mount_uploader :classroom_image, ClassroomImageUploader
 end

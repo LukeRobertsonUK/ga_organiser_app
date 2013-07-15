@@ -1,24 +1,19 @@
-<h1>Listing announcements</h1>
-
-<table>
-  <tr>
-    <th>Announcement text</th>
-    <th>Announcement image</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
+<h1>GA Announcements</h1>
+<ul>
 <% @announcements.each do |announcement| %>
-  <tr>
-    <td><%= announcement.announcement_text %></td>
-    <td><%= announcement.announcement_image %></td>
-    <td><%= link_to 'Show', announcement %></td>
-    <td><%= link_to 'Edit', edit_announcement_path(announcement) %></td>
-    <td><%= link_to 'Destroy', announcement, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
-</table>
+    <li><% unless announcement.announcement_image.blank? %>
+    <%= image_tag announcement.announcement_image.mini.url %>
+    <% end %>
+    <%= link_to announcement.announcement_text, announcement %> |
+    <%= link_to 'Edit', edit_announcement_path(announcement) %> |
+    <%= link_to 'Destroy', announcement, method: :delete, data: { confirm: 'Are you sure?' } %>
+    </li>
+   <%end%>
+  </ul>
+
+
+
+
 
 <br />
 

@@ -1,14 +1,11 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <b>Announcement text:</b>
-  <%= @announcement.announcement_text %>
-</p>
+<h4><%= @announcement.announcement_text %></h4>
+<% unless @announcement.announcement_image.blank? %>
+<%= image_tag @announcement.announcement_image.detail.url %>
+<% end %>
 
-<p>
-  <b>Announcement image:</b>
-  <%= @announcement.announcement_image %>
-</p>
+<br>
 
 
 <%= link_to 'Edit', edit_announcement_path(@announcement) %> |

@@ -1,29 +1,38 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <b>Name:</b>
-  <%= @site.name %>
-</p>
 
-<p>
-  <b>Address:</b>
+  <h4><%= @site.name %></h4>
+
+<% unless @site.site_image.blank? %>
+<%= image_tag @site.site_image.detail.url %>
+<% end %>
+<br>
+<p>Address:
   <%= @site.address %>
 </p>
 
-<p>
-  <b>Telephone:</b>
+<p>Telephone:
   <%= @site.telephone %>
 </p>
 
 <p>
-  <b>Site image:</b>
-  <%= @site.site_image %>
-</p>
-
-<p>
-  <b>Directions:</b>
+  Directions:
   <%= @site.directions %>
 </p>
+<% unless @site.classrooms.blank?%>
+<p>
+  Classrooms:
+  <ul>
+    <% @site.classrooms.all.each do |classroom| %>
+    <li>
+      <% unless classroom.classroom_image.blank? %>
+      <%= image_tag classroom.classroom_image.mini.url %>
+      <% end %>
+      <%=link_to classroom.name, classroom %> | seating capacity:
+      <%=classroom.seating_capacity%>
+    </li>
+    <%end%>
+<%end%>
 
 
 <%= link_to 'Edit', edit_site_path(@site) %> |

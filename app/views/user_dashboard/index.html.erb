@@ -1,0 +1,16 @@
+<h1> this should be the user dashboard </h1>
+
+<h3>You are enrolled in the following courses</h3>
+<ul>
+  <% @enrollments.each do |enrollment| %>
+    <li><%= link_to enrollment.course.name, course_path(enrollment.course) %>
+           <%enrollment.course.lessons.each do |lesson| %>
+            <%=lesson.lesson_date%>,
+            <%=lesson.time_slot%>
+            <br>
+            <%end%>
+
+
+    </li>
+  <%end%>
+</ul>

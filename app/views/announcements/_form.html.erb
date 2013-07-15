@@ -12,14 +12,22 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :announcement_text %><br />
+    <%= f.label :announcement_text %>
     <%= f.text_field :announcement_text %>
   </div>
+
   <div class="field">
-    <%= f.label :announcement_image %><br />
-    <%= f.text_field :announcement_image %>
+    <%= f.label :announcement_image %>
+    <%= f.file_field :announcement_image %>
   </div>
+
   <div class="actions">
     <%= f.submit %>
   </div>
 <% end %>
+
+   <% if @announcement.persisted? %>
+      <% unless @announcement.announcement_image.blank?%>
+      <%= image_tag @announcement.announcement_image.thumb.url %>
+          <% end %>
+    <% end %>

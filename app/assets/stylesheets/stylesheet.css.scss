@@ -1,3 +1,79 @@
 // Place all the styles related to the Users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+$head_font: 'Noto Sans', sans-serif;
+$script_font: 'Alex Brush', cursive;
+$ga_red:#FF1538;
+
+
+    .titlebar {
+      background: image_url('background.jpg');
+      background-size: cover;
+      background-repeat: no-repeat;
+      height: 200px;
+      position: relative;
+      padding:5px;
+      border-bottom: 10px solid $ga_red;
+    }
+
+    .titlebar h1 {
+      color: #FFFFFF;
+      padding-top: 60px;
+      padding-left: 60px;
+      padding-bottom: 5px;
+      font-size: 80px;
+      text-shadow: 0.1em 0.1em 0.2em #444444;
+      font-family: $head_font;
+    }
+    .titlebar p {
+      color: #FFFFFF;
+      padding-left: 60px;
+      text-shadow: 0.1em 0.1em 0.2em black;
+      font-family: $head_font;
+      font-size: 120%;
+      padding-right: 400px;
+    }
+
+    .ga_logo {
+      position: absolute;
+      height: 30px;
+
+     }
+
+    .sign_in {
+      float:right;
+      position: absolute;
+      display: block;
+      margin: auto;
+    }
+
+    h3{
+      font-family: $head_font;
+    }
+
+    li {
+      list-style: none;
+
+          }
+
+    ul {
+      margin: 0;
+    }
+
+    .announcements {
+      border: 5px solid $ga_red;
+      border-radius: 5px;
+      padding: 10px;
+      margin-top: 20px;
+
+    }
+
+    h4.course_list {
+      color: $ga_red
+    }
+
+    li a {
+      text-decoration: none;
+    }
+

@@ -1,46 +1,55 @@
-<h1>Home#index</h1>
-<p>Find me in app/views/home/index.html.erb</p>
+<div class="row">
+  <div class="span8">
 
 
-<h2>GA Announcements</h2>
-<ul>
-  <% @announcements.each do |announcement| %>
-  <li>
-    <%=announcement.announcement_text %>
-    <br>
-    <% if announcement.user %>
-    Posted by:
-    <%=announcement.user.name%>
+    <h3>Upcoming Courses</h3>
+
+    <ul>
+      <% @courses.each do |course| %>
+      <li>
+        <h4 class="course_list"><%= link_to course.name, course%></h4>
+         at
+             <%= link_to course.site.name, course.site %>
+        <br>
+        <%= course.one_liner %>
+        <br>
+        Starts:
+        <%= course.lessons.order('lesson_date').first.lesson_date %>
+        <br>
+        <%= link_to 'Show', course %> |
+        <%= link_to 'Edit', edit_course_path(course) %> |
+        <%= link_to 'Destroy', course, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </li>
+      <% end %>
+    </ul>
+
+    <br />
+
+    <%= link_to 'New Course', new_course_path %>
+
+  </div>
+  <div class= "span4">
+
+    <div class="announcements">
+
+  <h3>GA Announcements</h3>
+  <ul>
+    <% @announcements.each do |announcement| %>
+    <li>
+      <%=announcement.announcement_text %>
+      <br>
+      <% if announcement.user %>
+      Posted by:
+      <%=announcement.user.name%>
+      <%end%>
+      <%= distance_of_time_in_words(Time.now, announcement.updated_at) %>
+      ago.
+
+    </li>
+
     <%end%>
-    <%= distance_of_time_in_words(Time.now, announcement.updated_at) %>
-    ago.
+  </ul>
+  </div>
+</div>
+</div>
 
-  </li>
-  <%end%>
-</ul>
-
-
-
-
-<h2>Upcoming Courses</h2>
-
-<ul>
-  <% @courses.each do |course| %>
-  <li><%= course.name %> at
-    <%= course.site.name %>
-    <br>
-    <%= course.one_liner %>
-    <br>
-    Starts:
-    <%= course.lessons.order('lesson_date').first.lesson_date %>
-    <br>
-    <%= link_to 'Show', course %> |
-    <%= link_to 'Edit', edit_course_path(course) %> |
-    <%= link_to 'Destroy', course, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </li>
-  <% end %>
-</ul>
-
-<br />
-
-<%= link_to 'New Course', new_course_path %>

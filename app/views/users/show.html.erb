@@ -1,45 +1,31 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <b>Name:</b>
-  <%= @user.name %>
-</p>
+<h4><%= @user.name %></h4>
 
-<p>
-  <b>Email:</b>
+<% unless @user.user_image.blank? %>
+<%= image_tag @user.user_image.detail.url %>
+<% end %>
+
+<br>
+<p>Email:
   <%= @user.email %>
 </p>
-
 <p>
-  <b>User access:</b>
-  <%= @user.user_access %>
-</p>
-
-<p>
-  <b>Address:</b>
+  Address:
   <%= @user.address %>
 </p>
-
 <p>
-  <b>Telephone:</b>
+  Telephone:
   <%= @user.telephone %>
 </p>
-
 <p>
-  <b>Birth date:</b>
+  Date of Birth:
   <%= @user.birth_date %>
 </p>
-
 <p>
-  <b>Profile:</b>
+  Profile:
   <%= @user.profile %>
 </p>
-
-<p>
-  <b>User image:</b>
-  <%= @user.user_image %>
-</p>
-
-
+<br>
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>

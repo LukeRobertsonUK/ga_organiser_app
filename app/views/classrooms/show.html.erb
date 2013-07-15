@@ -1,20 +1,18 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <b>Name:</b>
-  <%= @classroom.name %>
-</p>
+<h4><%= @classroom.name %> |
+  <%= @classroom.site.name %>
+</h4>
 
+<% unless @classroom.classroom_image.blank? %>
+<%= image_tag @classroom.classroom_image.detail.url %>
+<% end %>
+
+<br>
 <p>
-  <b>Seating capacity:</b>
+  Seating capacity:
   <%= @classroom.seating_capacity %>
 </p>
-
-<p>
-  <b>Classroom image:</b>
-  <%= @classroom.classroom_image %>
-</p>
-
 
 <%= link_to 'Edit', edit_classroom_path(@classroom) %> |
 <%= link_to 'Back', classrooms_path %>

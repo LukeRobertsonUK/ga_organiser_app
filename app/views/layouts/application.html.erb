@@ -2,6 +2,8 @@
 <html>
 <head>
   <title>General Assembly</title>
+  <link href='http://fonts.googleapis.com/css?family=Noto+Sans' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Cantora+One' rel='stylesheet' type='text/css'>
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
@@ -18,26 +20,50 @@
       <li><%= link_to('Lessons', lessons_path) %></li>
       <li><%= link_to('Enrollments', enrollments_path) %></li>
       <li><%= link_to('Announcements', announcements_path) %></li>
-
-<% if current_user %>
+       <% if current_user %>
+      <% if can? :manage, :all %>
+      <li><%= link_to('My Dashboard', admin_path)%></li>
+      <%else%>
+      <li><%= link_to("My Dashboard", dashboard_path)%></li>
+      <%end%>
+      <li><%= link_to("Edit Your Details", edit_user_path(session[:user_id]))%><li>
+        <%end %>
+    </ul>
+    <% if current_user %>
     <p><%= "Logged in as #{current_user.email}" %> |
-    <%= link_to 'Logout', session_path(session), method: :delete, data: {confirm: 'Are you sure?'} %>
-  </p>
-    <%else%>
-    <p>
-      <%= link_to "Not currently logged-in" ,login_path, class:"login_status" %>
+      <%= link_to 'Logout', session_path(session), method: :delete, data: {confirm: 'Are you sure?'} %>
     </p>
-  <%end%>
+    <%end%>
 
-  <% flash.each do |name, message| %>
-  <div class='flash-message flash-message-<%=name%>'>
-   <%"login_status"%><%=message %>
-  </div>
-  <%end%>
 
-    <div class="container">
-      <%= yield %>
+
+
+    <% flash.each do |name, message| %>
+    <div class='flash-message flash-message-<%=name%>'>
+     <%"login_status"%><%=message %>
+   </div>
+   <%end%>
+
+   <div class="container">
+    <div class="titlebar">
+      <%= image_tag 'generalassembly.png', class: "ga_logo" %>
+      <div class="sign_in">
+        <%unless current_user%>
+          <%= link_to "Sign In" ,login_path, class:"login_status" %>
+        <%end%>
+      </div>
+      <h1>Welcome!</h1>
+
+
+
+      <p>Feel free to learn about General Assembly and browse our portfolio of upcoming courses. For the best experience, please sign in or register as a new user. </p>
+
+
+
     </div>
+
+    <%= yield %>
   </div>
+</div>
 </body>
 </html>

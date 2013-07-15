@@ -1,6 +1,8 @@
 GaOrganiserApp::Application.routes.draw do
 
 
+  get "admin_dashboard/index"
+
   get "sessions/new"
 
   get "sessions/create"
@@ -43,7 +45,9 @@ GaOrganiserApp::Application.routes.draw do
 
   get '/login', to: "sessions#new"
 
+get '/admin', to: "admin_dashboard#index"
 
+get '/dashboard', to: "user_dashboard#index"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
