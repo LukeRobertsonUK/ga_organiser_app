@@ -2,7 +2,7 @@ class SitesController < ApplicationController
   # GET /sites
   # GET /sites.json
   load_and_authorize_resource
-   before_filter :authenticate
+
 
 
 

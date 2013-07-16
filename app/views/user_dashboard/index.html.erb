@@ -6,12 +6,12 @@
  <%unless @clashes.blank?%>
 <div class="warning">
 
-    <p>WARNING: You have lesson clashes at the following times:</p>
+    <p>WARNING: Lessons Clash!</p>
     <ul>
     <% @clashes.each do |clash| %>
-      <li>Date:
-    <%=clash.lesson_date%> | Session:
-    <%= clash.time_slot%>
+      <li>
+        <%= clash.time_slot%> session on
+    <%=clash.lesson_date%>
   </li>
     <%end%>
   </ul>

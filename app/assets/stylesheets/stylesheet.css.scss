@@ -5,10 +5,21 @@
 $head_font: 'Noto Sans', sans-serif;
 $script_font: 'Alex Brush', cursive;
 $ga_red:#FF1538;
+$box_red: rgba(255,186,186,1);
+$box_blue: rgba(188, 229, 248,1);
+$ga_blue: rgba(0,82,155,1);
+$ga_grey: #EAE2DF;
 
+    body {
+      background: image_url('woodfloor.jpg');
+    }
+    .container {
+      background: image_url('white_wall.png');
+      background-color: white;
+         }
 
     .titlebar {
-      background: image_url('background.jpg');
+      background: image_url('horizon.jpg');
       background-size: cover;
       background-repeat: no-repeat;
       height: 200px;
@@ -50,6 +61,24 @@ $ga_red:#FF1538;
 
     h3{
       font-family: $head_font;
+      font-size: 150%;
+      border-bottom: 2px solid $ga_red;
+      font-weight: bold;
+      margin: 5px;
+    }
+
+    h4{
+      font-family: $head_font;
+      font-size: 120%;
+      margin-left: 10px;
+      margin-right: 10px;
+      margin-top: 15px;
+      border-bottom: 1px solid $ga_grey;
+    }
+
+    h4 a {
+      color: black;
+
     }
 
     li {
@@ -58,19 +87,49 @@ $ga_red:#FF1538;
           }
 
     ul {
-      margin: 0;
+      margin-left: 5px;
     }
 
     .announcements {
-      border: 5px solid $ga_red;
-      border-radius: 5px;
-      padding: 10px;
-      margin-top: 20px;
+      box-shadow:rgba(0,0,0,0.1) 0px 0px 24px;
+      border-radius: 10px;
+      padding: 2px;
+      margin: 5px;
+      font-size: 90%;
+      text-align: center;
+      background-color: white;
+     }
 
-    }
+     .announcements h3 {
+      text-align: center;
+     }
+
+     .announcements li a {
+      color: grey;
+      font-weight: bold;
+
+            }
+
+     .announcements li {
+      text-align: left;
+      background: $ga_grey;
+      padding: 2px;
+      border-radius: 5px;
+      margin: 3px;
+     }
+
+     .navbox {
+      box-shadow:rgba(0,0,0,0.1) 0px 0px 24px;
+      border-radius: 10px;
+      margin: 5px;
+      background-color: white;
+     }
+
+
 
     h4.course_list {
       color: $ga_red
+
     }
 
     li a {
@@ -78,30 +137,50 @@ $ga_red:#FF1538;
     }
 
     .warning {
-      border: 2px solid $ga_red;
-      border-radius: 5px;
-      background-color: $ga_red;
+      border: 1px solid $ga_red;
+      border-radius: 10px;
+      background-color: $box_red;
       margin: 5px;
-      padding: 5px;
-      color: white;
+      padding: 2px;
+      color: $ga_red;
+      font-size: 80%;
       font-weight: bold;
-
+      box-shadow:rgba(0,0,0,0.5) 0px 0px 24px;
+      text-align: center;
     }
 
     .warning a {
       text-decoration: none;
-      color: white;
+      color: $ga_red;
+    }
+
+    .warning a:hover, :focus {
+      text-decoration: underline;
+    }
+
+    .warning p {
+     text-decoration: underline;
     }
 
     .classroom_view {
       display: inline-block;
       border: 1px solid black;
       min-height: 200px;
-      min-width: 100%;
-      margin-bottom: 10px;
+      min-width: 90%;
+      margin: 10px;
       border-radius: 5px;
       padding: 5px;
       box-shadow:rgba(0,0,0,0.5) 0px 0px 24px;
     }
 
+    li p.course_info {
+      margin-left: 10px;
+      margin-right: 20px;
+      margin-bottom: 5px;
+      font-size: 110%;
+    }
 
+  .mini_course_image {
+    float: right;
+    display: inline-block;
+  }
