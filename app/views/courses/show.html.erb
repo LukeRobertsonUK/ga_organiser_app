@@ -2,11 +2,13 @@
 
 <h4><%= @course.name %></h4>
 
-<%if @course.enrollments %>
-<%if @course.enrollments.where(user_id: @user.id).first%>
+<% if @course.enrollments %>
+<% if @course.enrollments.where(user_id: @user.id).first%>
+<% unless @course.enrollments.where(user_id: @user.id).first.grade.blank?%>
 <h3>
 Grade Achieved:
 <%=@course.enrollments.where(user_id: @user.id).first.grade%>
+<%end%>
 <%end%>
 <%end%>
 </h3>

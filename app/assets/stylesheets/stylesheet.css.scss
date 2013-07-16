@@ -77,3 +77,31 @@ $ga_red:#FF1538;
       text-decoration: none;
     }
 
+    .warning {
+      border: 2px solid $ga_red;
+      border-radius: 5px;
+      background-color: $ga_red;
+      margin: 5px;
+      padding: 5px;
+      color: white;
+      font-weight: bold;
+
+    }
+
+    .warning a {
+      text-decoration: none;
+      color: white;
+    }
+
+    .classroom_view {
+      display: inline-block;
+      border: 1px solid black;
+      min-height: 200px;
+      min-width: 100%;
+      margin-bottom: 10px;
+      border-radius: 5px;
+      padding: 5px;
+      box-shadow:rgba(0,0,0,0.5) 0px 0px 24px;
+    }
+
+

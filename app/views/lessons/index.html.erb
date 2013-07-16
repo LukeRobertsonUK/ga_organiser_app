@@ -1,25 +1,29 @@
-<h1>Listing lessons</h1>
+<h1><%="Schedule for #{@site.name}"%></h1>
 
-<table>
-  <tr>
-    <th>Lesson date</th>
-    <th>Time slot</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
 
-<% @lessons.each do |lesson| %>
-  <tr>
-    <td><%= lesson.lesson_date %></td>
-    <td><%= lesson.time_slot %></td>
-    <td><%= link_to 'Show', lesson %></td>
-    <td><%= link_to 'Edit', edit_lesson_path(lesson) %></td>
-    <td><%= link_to 'Destroy', lesson, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
-</table>
 
-<br />
 
-<%= link_to 'New Lesson', new_lesson_path %>
+<% grouped_lessons = @lessons.group_by(&:classroom_id) %>
+<%Classroom.all.each_slice(3) do |batch| %>
+<div class="row">
+
+<% batch.each do |classroom| %>
+
+  <div class="span4">
+   <div class="classroom_view">
+  <%=classroom.name%>
+  <% lessons = grouped_lessons[classroom.id] %>
+  <% if lessons %>
+  <ul>
+  <% lessons.each do |lesson| %>
+    <li>
+    <%=link_to "#{lesson.lesson_date.to_s(:long)}, #{lesson.time_slot} session: #{lesson.course.name}", edit_course_path(lesson.course) %>
+  </li>
+  <%end%>
+</ul>
+<%end%>
+</div>
+</div>
+<%end%>
+</div>
+<%end%>

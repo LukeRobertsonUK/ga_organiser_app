@@ -1,3 +1,33 @@
+  <div class="row">
+  <div class="span8">
+
+<div class="warning">
+    <%unless @clashing_lessons.blank?%>
+    <p>WARNING: You have created 2 or more lessons that take place in the same classroom at the same time!</p>
+    <ul>
+    <% @clashing_lessons.each do |clashing_lesson| %>
+      <li>
+  <%= link_to "#{clashing_lesson.course.name} @ #{clashing_lesson.course.site.name}: #{clashing_lesson.time_slot} session on #{clashing_lesson.lesson_date.to_s(:long)} in #{clashing_lesson.classroom.name}", edit_course_path(clashing_lesson.course)%>
+  </li>
+    <%end%>
+  </ul>
+    <%end%>
+</div>
+
+
+<%unless @lessonless_courses.blank?%>
+<div class="warning">
+<p>WARNING: You have yet to create lessons for the following courses</p>
+    <ul>
+    <% @lessonless_courses.each do |course| %>
+      <li>
+    <%= link_to "#{course.name} @ #{course.site.name}", edit_course_path(course)%>
+  </li>
+    <%end%>
+  </ul>
+  </div>
+<%end%>
+
 
 
 <h4>Upcoming Courses</h4>
@@ -9,12 +39,14 @@
         <%= link_to course.name, course%>
          at
         <%= link_to course.site.name, course.site %>. Starts:
-        <%= course.lessons.order('lesson_date').first.lesson_date %> |
+        <%= course.lessons.order('lesson_date').first.lesson_date.to_s(:long)  %> |
         <%= link_to 'Edit', edit_course_path(course) %> |
         <%= link_to 'Destroy', course, method: :delete, data: { confirm: 'Are you sure?' } %>
       </li>
       <% end %>
     </ul>
+
+
 
 
     <h4>Past Courses</h4>
@@ -24,54 +56,20 @@
         <%= link_to course.name, course%>
          at
         <%= link_to course.site.name, course.site %>. Date:
-        <%= course.lessons.order('lesson_date').first.lesson_date %> |
+        <%= course.lessons.order('lesson_date').first.lesson_date.to_s(:long)  %> |
         <%= link_to 'Edit', edit_course_path(course) %> |
         <%= link_to 'Destroy', course, method: :delete, data: { confirm: 'Are you sure?' } %>
       </li>
       <% end %>
     </ul>
-
-    <%unless @clashing_lessons.blank?%>
-    <h4>Clashing Lessons!</h4>
-    <p>WARNING: You have created 2 or more lessons that take place in the same classroom at the same time!</p>
-    <ul>
-    <% @clashing_lessons.each do |clashing_lesson| %>
-      <li>Date:
-    <%=clashing_lesson.lesson_date%> | Time:
-    <%=clashing_lesson.time_slot%> | Course:
-    <%=clashing_lesson.course.name%> | Campus:
-    <%=clashing_lesson.classroom.site.name%> | Classroom:
-    <%=clashing_lesson.classroom.name%>
-  </li>
-    <%end%>
-  </ul>
-    <%end%>
-
-<%unless @lessonless_courses.blank?%>
-<h4>Courses with no lessons</h4>
-<p>WARNING: You have yet to create lessons for the following courses</p>
-    <ul>
-    <% @lessonless_courses.each do |course| %>
-      <li>
-    Course:
-    <%=course.name%> | Campus:
-    <%=course.site.name%>
-  </li>
-    <%end%>
-  </ul>
-
-
-
-
-<%end%>
-
-
-
+</div>
+<div class = "span4">
+  <div class="announcements">
 
 
     <h4>GA Announcements</h4>
     <p><%=link_to "Create A New Announcement", new_announcement_path %></p>
-    <p><%= link_to "See All Announcements", announcements_path%></p>
+
   <ul>
     <% @announcements.each do |announcement| %>
     <li>
@@ -87,3 +85,27 @@
     </li>
 
     <%end%>
+  </ul>
+  <%= link_to "See All Announcements", announcements_path%>
+    </div>
+<%= form_tag(lessons_path, method:"get") do %>
+          <%= label_tag :site_id, "Campus" %>
+          <%= select_tag "site_id", options_for_select(Site.all.collect{|a| [a.name, a.id]}), options = {} %>
+          <br>
+      <%= label_tag :start_date, "Start Date" %>
+       <%= select_date Date.today, prefix: :start_date %>
+          <br>
+          <%= label_tag :duration %>
+          <%= number_field_tag(:duration, value = 7, options = {}) %>
+          <br>
+          <%= submit_tag("Show Me") %>
+        <% end %>
+
+
+
+
+</div>
+
+
+
+

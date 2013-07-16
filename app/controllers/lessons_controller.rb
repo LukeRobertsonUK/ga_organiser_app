@@ -2,19 +2,24 @@ class LessonsController < ApplicationController
   # GET /lessons
   # GET /lessons.json
   load_and_authorize_resource
+    before_filter :authenticate
+
 
   def index
-    @lessons = Lesson.all
 
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @lessons }
-    end
+    @start_date = params[:start_date].map{|k,v| v}.join("-").to_date
+    @duration = params[:duration].to_i
+    @site_id = params[:site_id]
+    @site = Site.where(id: params[:site_id]).first
+    date_range = (@start_date..(@start_date + @duration))
+    @lessons = Lesson.joins(:classroom).where(classrooms: {site_id: @site_id}, lessons: {lesson_date: date_range}).sort_by(&:lesson_date)
+
   end
+
 
   # GET /lessons/1
   # GET /lessons/1.json
-  before_filter :authenticate
+
 
   def show
     @lesson = Lesson.find(params[:id])

@@ -7,10 +7,15 @@ class Course < ActiveRecord::Base
   has_many :enrollments
   has_many :users, :through => :enrollments
 
+validates :name, presence: true
+validates :name, uniqueness:true
+
+
   accepts_nested_attributes_for :lessons, allow_destroy: true
   mount_uploader :course_image, CourseImageUploader
-
-  scope :future, lambda {joins(:lessons).where('lessons.lesson_date > ?', Time.now)}
-  scope :past, lambda {joins(:lessons).where('lessons.lesson_date < ?', Time.now)}
+  scope :ordered_by_lessons_desc, lambda{ includes(:lessons).joins(:lessons).order("lessons.lesson_date DESC")}
+  scope :ordered_by_lessons, lambda{ includes(:lessons).joins(:lessons).order("lessons.lesson_date")}
+  scope :future, lambda {ordered_by_lessons.where('lessons.lesson_date >= ?', Time.now)}
+  scope :past, lambda {ordered_by_lessons_desc.where('lessons.lesson_date < ?', Time.now)}
 
 end

@@ -20,7 +20,6 @@ class CoursesController < ApplicationController
     @course = Course.find(params[:id])
     @user = current_user
     @instructor_enrollments =@course.enrollments.where(involvement: "instructor")
-
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @course }

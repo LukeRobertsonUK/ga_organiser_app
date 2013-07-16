@@ -1,4 +1,39 @@
-<h1> this should be the user dashboard </h1>
+<div class="row">
+<div class="span8">
+
+<h3>Your Lesson Schedule</h3>
+
+ <%unless @clashes.blank?%>
+<div class="warning">
+
+    <p>WARNING: You have lesson clashes at the following times:</p>
+    <ul>
+    <% @clashes.each do |clash| %>
+      <li>Date:
+    <%=clash.lesson_date%> | Session:
+    <%= clash.time_slot%>
+  </li>
+    <%end%>
+  </ul>
+  </div>
+    <%end%>
+
+
+<% @future_lessons.each do |lesson| %>
+<ul>
+  <li>
+    <%= lesson.lesson_date.to_s(:long) %> |
+    <%= lesson.time_slot %> session |
+    <%= lesson.course.name %> |
+    <%= lesson.course.site.name %> |
+    <%= lesson.classroom.name %>
+
+  </li>
+<%end%>
+</ul>
+
+
+
 
 <h3>You are enrolled in the following upcoming courses</h3>
 <ul>
@@ -9,7 +44,7 @@
   <%end%>
 </ul>
 
-<h3>Previous courses</h3>
+<h3>Past Courses</h3>
 <ul>
   <% @past_user_courses.each do |course| %>
     <li><%= link_to course.name, course_path(course) %>
@@ -17,3 +52,37 @@
     </li>
   <%end%>
 </ul>
+</div>
+<div class = "span4">
+  <div class="announcements">
+
+
+    <h4>GA Announcements</h4>
+    <%=link_to "Create A New Announcement", new_announcement_path %>
+
+  <ul>
+    <% @announcements.each do |announcement| %>
+    <li>
+      <%=announcement.announcement_text %>
+      <br>
+      <% if announcement.user %>
+      Posted by:
+      <%=announcement.user.name%>
+      <%end%>
+      <%= distance_of_time_in_words(Time.now, announcement.updated_at) %>
+      ago.
+
+    </li>
+    <%end%>
+  </ul>
+  <%= link_to "See All Announcements", announcements_path%>
+  </div>
+</div>
+
+
+
+
+
+
+
+

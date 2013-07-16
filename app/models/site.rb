@@ -4,5 +4,7 @@ class Site < ActiveRecord::Base
   has_many :courses
 
   mount_uploader :site_image, SiteImageUploader
+  validates :name, presence: true
+  validates :name, uniqueness:true
 
 end
