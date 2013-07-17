@@ -102,9 +102,10 @@
       </ul>
     </div>
 
-  <%if @course.enrollments %>
+  <%unless @course.users.blank? %>
     <div class="announcements">
       <% if (can? :edit, Course) || @course.users.include?(@user)  %>
+
       <h3>Peer Group</h3>
       <ul>
         <%@course.enrollments.all.each do |enrollment| %>
