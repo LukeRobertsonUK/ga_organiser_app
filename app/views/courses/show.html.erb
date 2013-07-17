@@ -36,20 +36,22 @@
 </p>
 
 
-  <h4>Instructor(s)</h4>
+
   <%if @instructor_enrollments%>
+  <h4>Instructor(s)</h4>
   <ul>
     <% @instructor_enrollments.each do |instructor_enrollment| %>
     <li><%= instructor_enrollment.user.name %></li>
-  </ul>
+
   <%end%>
+  </ul>
   <%end%>
 
   <%unless@course.advertised_fee.blank?%>
-
   <h4>Tuition Fee</h4>
-  <%= @course.advertised_fee %>
-<%end%>
+  <p>$
+    <%= @course.advertised_fee %></p>
+  <%end%>
 
 <%if @course.lessons %>
   <h4>Schedule</h4>
@@ -72,7 +74,7 @@
 </div>
 
 
-<div class = span4>
+<div class = "span4">
 
   <div class="navbox">
       <ul class="nav nav-list">

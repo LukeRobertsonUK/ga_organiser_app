@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
   has_many :enrollments
   has_many :courses, :through => :enrollments
   has_many :announcements
+  before_destroy :delete_enrollments
 
   validates :name, presence: true
   validates :email, presence: true
@@ -14,5 +15,12 @@ class User < ActiveRecord::Base
   def user_access?(user_access)
   self.user_access == user_access
 end
+
+
+  def delete_enrollments
+    Enrollment.where(user_id: self.id).each do |enrollment|
+      enrollment.destroy
+    end
+  end
 
 end

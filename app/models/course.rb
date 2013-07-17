@@ -6,6 +6,8 @@ class Course < ActiveRecord::Base
   has_many :classrooms, :through => :lessons
   has_many :enrollments
   has_many :users, :through => :enrollments
+  before_destroy :delete_enrollments
+  before_destroy :delete_lessons
 
 validates :name, presence: true
 validates :name, uniqueness:true
@@ -17,5 +19,19 @@ validates :name, uniqueness:true
   scope :ordered_by_lessons, lambda{ includes(:lessons).joins(:lessons).order("lessons.lesson_date")}
   scope :future, lambda {ordered_by_lessons.where('lessons.lesson_date >= ?', Time.now)}
   scope :past, lambda {ordered_by_lessons_desc.where('lessons.lesson_date < ?', Time.now)}
+
+
+  def delete_enrollments
+    Enrollment.where(course_id: self.id).each do |enrollment|
+      enrollment.destroy
+    end
+  end
+
+def delete_lessons
+    Lesson.where(course_id: self.id).each do |enrollment|
+      enrollment.destroy
+    end
+  end
+
 
 end
