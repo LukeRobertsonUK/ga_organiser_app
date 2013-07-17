@@ -10,6 +10,16 @@ $box_blue: rgba(188, 229, 248,1);
 $ga_blue: rgba(0,82,155,1);
 $ga_grey: #EAE2DF;
 
+    #error_explanation {
+      color: $ga_red;
+      margin-left: 10px;
+    }
+
+  #error_explanation h5 {
+      margin: 0;
+
+  }
+
     .flash-message {
       text-align: center;
       background: $ga_red;

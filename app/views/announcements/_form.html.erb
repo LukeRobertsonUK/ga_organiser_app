@@ -1,8 +1,7 @@
 <%= form_for(@announcement) do |f| %>
   <% if @announcement.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@announcement.errors.count, "error") %> prohibited this announcement from being saved:</h2>
-
+      <h5><%= pluralize(@announcement.errors.count, "error") %> prohibited this announcement from being saved:</h5>
       <ul>
       <% @announcement.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>

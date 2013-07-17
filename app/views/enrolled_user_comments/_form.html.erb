@@ -1,7 +1,7 @@
 <%= form_for(@enrolled_user_comment) do |f| %>
   <% if @enrolled_user_comment.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@enrolled_user_comment.errors.count, "error") %> prohibited this enrolled_user_comment from being saved:</h2>
+      <h5><%= pluralize(@enrolled_user_comment.errors.count, "error") %> prohibited this enrolled_user_comment from being saved:</h5>
 
       <ul>
       <% @enrolled_user_comment.errors.full_messages.each do |msg| %>
