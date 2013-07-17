@@ -215,12 +215,18 @@ $ga_grey: #EAE2DF;
       display: inline-block;
       border: 1px solid black;
       min-height: 200px;
-      min-width: 90%;
+      min-width: 93%;
       margin: 10px;
       border-radius: 5px;
       padding: 5px;
       box-shadow:rgba(0,0,0,0.5) 0px 0px 24px;
     }
+
+    .classroom_view li {
+      margin-left: 5px;
+
+    }
+
 
     li p.course_info {
       margin-left: 15px;

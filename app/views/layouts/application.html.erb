@@ -48,8 +48,9 @@
     <ul class="nav nav-tabs">
       <li class="active"><%= link_to('Courses', admin_path) %></li>
       <li><%= link_to('Campuses', sites_path) %></li>
+              <%if current_user%>
       <li><%= link_to("My Dashboard", dashboard_path)%></li>
-            <% if current_user %>
+
         <li><%= link_to("My Account", edit_user_path(session[:user_id]))%><li>
         <%end %>
       </ul>

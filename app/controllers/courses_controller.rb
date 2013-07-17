@@ -6,8 +6,7 @@ class CoursesController < ApplicationController
 
 
   def index
-
-    @courses = Course.all
+    @courses =  Course.all
 
     respond_to do |format|
       format.html # index.html.erb

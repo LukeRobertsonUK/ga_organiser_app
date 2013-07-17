@@ -64,4 +64,39 @@ GaOrganiserApp::Application.configure do
   # Log the query plan for queries taking more than this (works
   # with SQLite, MySQL, and PostgreSQL)
   # config.active_record.auto_explain_threshold_in_seconds = 0.5
+
+config.action_mailer.default_url_options = { :host => 'mysterious-beyond-7114.herokuapp.com' }
+
+
+# ActionMailer Config
+# Setup for production - deliveries, no errors raised
+config.action_mailer.delivery_method = :smtp
+config.action_mailer.perform_deliveries = true
+config.action_mailer.raise_delivery_errors = false
+
+
+config.action_mailer.default :charset => "utf-8"
+
+config.action_mailer.smtp_settings = {
+  :address   => "smtp.mandrillapp.com",
+
+
+  :port      => 587,
+  :user_name => "luke.robertson@mac.com",
+  :password  => "e1c235vWBFEoRKS-ZuK1PA"
+}
+
+
+CarrierWave.configure do |config|
+  config.storage = :fog
+  config.fog_credentials = {
+    :provider               => 'AWS',
+    :aws_access_key_id      => ENV['AWS_ACCESS_KEY'],
+    :aws_secret_access_key  => ENV['AWS_SECRET_ACCESS_KEY']
+  }
+  config.fog_directory  = 'mybuckettestapp'
+end
+end
+
+
 end

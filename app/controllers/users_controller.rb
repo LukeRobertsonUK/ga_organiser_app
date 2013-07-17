@@ -45,6 +45,7 @@ class UsersController < ApplicationController
     @user = User.new(params[:user])
 
     if @user.save
+      UserMailer.registration_confirmation(@user).deliver
       session[:user_id] ||= @user.id
       flash[:welcome] = "Thanks for registering!"
       redirect_to courses_path

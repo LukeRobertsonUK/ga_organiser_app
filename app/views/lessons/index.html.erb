@@ -1,17 +1,17 @@
-<h1><%="Schedule for #{@site.name}"%></h1>
+<h3><%="Schedule for #{@site.name}: #{@duration} days, starting #{@start_date.to_s(:long)}"%></h3>
 
 
 
 
 <% grouped_lessons = @lessons.group_by(&:classroom_id) %>
-<%@classrooms.each_slice(3) do |batch| %>
+<%@classrooms.each_slice(2) do |batch| %>
 <div class="row">
 
 <% batch.each do |classroom| %>
 
-  <div class="span4">
+  <div class="span6">
    <div class="classroom_view">
-  <%=classroom.name%>
+  <h4><%=classroom.name%></h4>
   <% lessons = grouped_lessons[classroom.id] %>
   <% if lessons %>
   <ul>

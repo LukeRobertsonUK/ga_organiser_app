@@ -73,6 +73,18 @@
 
 
    <div class = "span4">
+<div class="announcements">
+    <%=search_form_for @q, :url=>  url_for(:admin_dashboard_controller => "q", :action => "index") do |f| %>
+      <p>
+        <%= f.label :name_cont, "Search Future Courses" %>
+        <%= f.text_field :name_cont  %>
+      </p>
+        <%= f.submit %>
+      </p>
+    <% end %>
+</div>
+
+
     <% if can? :manage, :all %>
     <div class="navbox">
       <ul class="nav nav-list">
