@@ -38,7 +38,7 @@
           <p class="course_info">
             <%= course.one_liner %>
           </p>
-          <p class="course_info">
+          <p class="course_info2">
             <%= link_to course.site.name, course.site %>,
             <%= course.lessons.order('lesson_date').first.lesson_date.to_s(:long)  %>
             <%if can? :manage, :all%> |

@@ -72,8 +72,10 @@ $ga_grey: #EAE2DF;
       font-size: 120%;
       margin-left: 10px;
       margin-right: 10px;
-      margin-top: 15px;
+      margin-top: 20px;
+      margin-bottom: 0px;
       border-bottom: 1px solid $ga_grey;
+      background: white;
     }
 
     h4 a {
@@ -174,11 +176,23 @@ $ga_grey: #EAE2DF;
     }
 
     li p.course_info {
-      margin-left: 10px;
+      margin-left: 15px;
       margin-right: 20px;
-      margin-bottom: 5px;
+      margin-bottom: 0px;
       font-size: 110%;
     }
+
+    li p.course_info2 {
+      margin-left: 15px;
+      margin-right: 20px;
+      margin-bottom: 5px;
+      margin-top: 0px;
+      font-size: 90%;
+      text-align: right;
+      border-bottom: 1px solid $ga_grey;
+    }
+
+
 
   .mini_course_image {
     float: right;
