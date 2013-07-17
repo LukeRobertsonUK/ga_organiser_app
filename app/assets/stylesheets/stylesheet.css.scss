@@ -10,19 +10,41 @@ $box_blue: rgba(188, 229, 248,1);
 $ga_blue: rgba(0,82,155,1);
 $ga_grey: #EAE2DF;
 
+    .flash-message {
+      text-align: center;
+      background: $ga_red;
+      font-family: $head_font;
+      color: white;
+      text-shadow: 0.1em 0.1em 0.2em black;
+      box-shadow: 0px 0px 20px 5px $ga_red;
+      margin: auto;
+      margin-bottom: 10px;
+      padding-left: 5px;
+      padding-right: 5px;
+      border-radius: 200px;
+      font-size: 80%;
+      display: inline-block;
+    }
+
+    #flash {
+      text-align: center;
+    }
+
     body {
-      background: image_url('woodfloor.jpg');
+      background: image_url('wood-wall.jpg') no-repeat center center fixed;
+    background-size: cover;;
     }
     .container {
       background: image_url('white_wall.png');
       background-color: white;
+      box-shadow: 0px 0px 20px 5px $ga_grey;
          }
 
     .titlebar {
       background: image_url('horizon.jpg');
       background-size: cover;
       background-repeat: no-repeat;
-      height: 200px;
+      height: 210px;
       position: relative;
       padding:5px;
       border-bottom: 10px solid $ga_red;
@@ -30,7 +52,7 @@ $ga_grey: #EAE2DF;
 
     .titlebar h1 {
       color: #FFFFFF;
-      padding-top: 60px;
+      padding-top: 75px;
       padding-left: 60px;
       padding-bottom: 5px;
       font-size: 80px;
@@ -46,6 +68,19 @@ $ga_grey: #EAE2DF;
       padding-right: 400px;
     }
 
+    #user_profile {
+      display: block;
+      margin-right: 10px;
+    }
+
+    #user_profile_image {
+      float: right;
+      margin: 10px;
+      border: 1px solid $ga_grey;
+      box-shadow: 0px 0px 20px 5px $ga_grey;
+
+    }
+
     .ga_logo {
       position: absolute;
       height: 30px;
@@ -53,11 +88,23 @@ $ga_grey: #EAE2DF;
      }
 
     .sign_in {
+      color: white;
       float:right;
-      position: absolute;
-      display: block;
-      margin: auto;
+      text-decoration: none;
+      text-shadow: 0.1em 0.1em 0.2em black;
     }
+
+    .sign_in a {
+      color: white;
+      text-decoration: none;
+      text-shadow: 0.1em 0.1em 0.2em black;
+      font-family: $head_font;
+    }
+
+  .sign_in a:hover, :focus {
+      text-decoration: underline;
+    }
+
 
     h3{
       font-family: $head_font;
@@ -147,7 +194,7 @@ $ga_grey: #EAE2DF;
       color: $ga_red;
       font-size: 80%;
       font-weight: bold;
-      box-shadow:rgba(0,0,0,0.5) 0px 0px 24px;
+      box-shadow:rgba(0,0,0,0.2) 0px 0px 24px;
       text-align: center;
     }
 
@@ -192,9 +239,69 @@ $ga_grey: #EAE2DF;
       border-bottom: 1px solid $ga_grey;
     }
 
-
+    .login {
+      width:400px;
+      margin: auto;
+      margin-bottom: 10px;
+      margin-top: 10px;
+    }
 
   .mini_course_image {
     float: right;
     display: inline-block;
   }
+
+  li.bullet_list {
+    border-bottom: 1px solid $ga_grey;
+    margin-right: 20px;
+  }
+
+  .form_fields {
+    box-shadow:rgba(0,0,0,0.1) 0px 0px 24px;
+      border-radius: 10px;
+      padding: 2px;
+      margin: 5px;
+      font-size: 90%;
+      background-color: white;
+      padding: 10px;
+
+  }
+
+  .form_fields .text_area {
+    height: 200px;
+  width: 97%;
+  max-width: 97%;
+  }
+
+.form_fields p {
+  margin-left: 10px;
+  text-align: justify;
+}
+
+.form_fields li {
+  margin-left: 10px;
+
+
+}
+  .lesson {
+    border-bottom: 2px solid $ga_red;
+  }
+
+  #edit_course {
+    margin-top: 5px;
+    margin-bottom: 0px;
+    padding-right: 10px;
+    float: right;
+  }
+.show_course {
+text-align: center;
+margin-top: 10px;
+margin-bottom: 10px;
+}
+
+
+
+
+
+
+

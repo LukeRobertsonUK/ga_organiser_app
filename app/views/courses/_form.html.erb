@@ -11,6 +11,10 @@
 </div>
 <% end %>
 
+<div class="row">
+<div class= "span4">
+    <div class="form_fields">
+
 <div class="field">
   <%= f.label :name %>
   <%= f.text_field :name %>
@@ -28,26 +32,49 @@
   <%= f.label :one_liner %>
   <%= f.text_field :one_liner %>
 </div>
+
+<div class="field">
+  <%= f.label :advertised_fee %>
+  <%= f.text_field :advertised_fee %>
+</div>
+
+
+
+<div class="actions">
+  <%= f.submit %>
+</div>
+
+</div>
+</div>
+
+<div class="span8">
+  <div class="form_fields">
+
+
+
+
+  <% if @course.persisted? %>
+      <% unless @course.course_image.blank?%>
+      <%= image_tag @course.course_image.detail.url %>
+          <% end %>
+    <% end %>
 <div class="field">
   <%= f.label :course_image %>
   <%= f.file_field :course_image %>
 </div>
 <div class="field">
-  <%= f.label :advertised_fee %>
-  <%= f.text_field :advertised_fee %>
-</div>
-<div class="field">
   <%= f.label :description %>
-  <%= f.text_area :description %>
+  <%= f.text_area :description, class:"text_area" %>
 </div>
-<%= render 'fields', f: f %>
-<div class="actions">
-  <%= f.submit %>
-</div>
-<% end %>
 
-  <% if @course.persisted? %>
-      <% unless @course.course_image.blank?%>
-      <%= image_tag @course.course_image.thumb.url %>
-          <% end %>
-    <% end %>
+
+</div>
+</div>
+
+  </div>
+
+<div class="form_fields"%>
+<%= render 'fields', f: f %>
+<% end %>
+</div>
+

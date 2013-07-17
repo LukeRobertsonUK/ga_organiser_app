@@ -41,7 +41,7 @@ GaOrganiserApp::Application.routes.draw do
 
   get '/home', to: "home#index"
 
-  root to: 'home#index'
+  root to: 'admin_dashboard#index'
 
   get '/login', to: "sessions#new"
 

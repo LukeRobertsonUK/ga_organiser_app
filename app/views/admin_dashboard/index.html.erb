@@ -30,6 +30,7 @@
       <%end -%>
 <%end%>
 
+  <% if @future_courses%>
       <h3>Upcoming Courses</h3>
       <ul>
         <% @future_courses.each do |course| %>
@@ -49,7 +50,9 @@
         </li>
         <% end %>
       </ul>
+    <%end%>
 
+<%if @past_courses%>
 <% if can? :manage, :all %>
       <h3>Past Courses</h3>
       <ul>
@@ -64,6 +67,8 @@
        <% end %>
      </ul>
     <%end%>
+   <%end%>
+
    </div>
 
 

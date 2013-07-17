@@ -11,6 +11,12 @@
     </div>
     <% end %>
 
+<div class="row">
+
+<div class= "span4">
+
+
+    <div class="form_fields">
     <div class="field">
       <%= f.label :name %>
       <%= f.text_field :name %>
@@ -31,14 +37,7 @@
       <%= f.label :birth_date %>
       <%= f.date_select :birth_date %>
     </div>
-    <div class="field">
-      <%= f.label :profile %>
-      <%= f.text_area :profile %>
-    </div>
-    <div class="field">
-      <%= f.label :user_image %>
-      <%= f.file_field :user_image %>
-    </div>
+
     <div class="field">
       <%= f.label :password %>
       <%= f.password_field :password %>
@@ -50,10 +49,26 @@
     <div class="actions">
       <%= f.submit %>
     </div>
-    <% end %>
+  </div>
+</div>
 
+<div class="span8">
+  <div class="form_fields">
     <% if @user.persisted? %>
       <% unless @user.user_image.blank?%>
-      <%= image_tag @user.user_image.thumb.url %>
+      <%= image_tag @user.user_image.detail.url %>
           <% end %>
     <% end %>
+    <div class="field">
+      <%= f.label :user_image %>
+      <%= f.file_field :user_image %>
+    </div>
+     <div class="field">
+      <%= f.label :profile %>
+      <%= f.text_area :profile, class:"text_area" %>
+    </div>
+
+</div>
+<% end %>
+</div>
+   </div>

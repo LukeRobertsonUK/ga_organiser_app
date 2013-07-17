@@ -8,9 +8,9 @@ class SessionsController < ApplicationController
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
         if user.user_access == "admin"
-          redirect_to admin_path, notice: 'Logged in with administrator access!'
+          redirect_to admin_path, notice: 'Signed in with administrator access!'
         else
-          redirect_to dashboard_path, notice: "Logger in with standard user access"
+          redirect_to dashboard_path, notice: "Signedin with standard user access"
         end
     else
       flash.now.alert = "Invalid Login, Try Again!"
@@ -20,7 +20,7 @@ class SessionsController < ApplicationController
 
   def destroy
        session[:user_id] = nil
-    redirect_to root_url, notice: "logged out!"
+    redirect_to root_url, notice: "Signed out!"
   end
 end
 

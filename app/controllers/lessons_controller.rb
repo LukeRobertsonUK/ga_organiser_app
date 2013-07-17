@@ -13,7 +13,7 @@ class LessonsController < ApplicationController
     @site = Site.where(id: params[:site_id]).first
     date_range = (@start_date..(@start_date + @duration))
     @lessons = Lesson.joins(:classroom).where(classrooms: {site_id: @site_id}, lessons: {lesson_date: date_range}).sort_by(&:lesson_date)
-
+    @classrooms = Classroom.where(site_id: @site_id)
   end
 
 

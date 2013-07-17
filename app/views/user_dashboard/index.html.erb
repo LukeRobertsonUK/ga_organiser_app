@@ -1,32 +1,31 @@
 <div class="row">
 <div class="span8">
 
-<h3>Your Lesson Schedule</h3>
+<h3>Lesson Schedule</h3>
 
  <%unless @clashes.blank?%>
-<div class="warning">
-
+  <div class="warning">
     <p>WARNING: Lessons Clash!</p>
     <ul>
-    <% @clashes.each do |clash| %>
+      <% @clashes.each do |clash| %>
       <li>
         <%= clash.time_slot%> session on
-    <%=clash.lesson_date%>
-  </li>
-    <%end%>
+        <%=clash.lesson_date%>
+      </li>
+      <%end%>
   </ul>
   </div>
-    <%end%>
+  <%end%>
 
-
-<% @future_lessons.each do |lesson| %>
 <ul>
-  <li>
-    <%= lesson.lesson_date.to_s(:long) %> |
-    <%= lesson.time_slot %> session |
-    <%= lesson.course.name %> |
-    <%= lesson.course.site.name %> |
-    <%= lesson.classroom.name %>
+<% @future_lessons.each do |lesson| %>
+  <li class="bullet_list">
+    <%= lesson.lesson_date.to_s(:long) %>:
+    <%= link_to lesson.course.name, lesson.course %> -
+    <%= lesson.time_slot %> session in
+    <%= lesson.classroom.name %> at
+    <%= link_to lesson.course.site.name, lesson.course.site %>
+
 
   </li>
 <%end%>
@@ -34,49 +33,60 @@
 
 
 
+  <% if@future_user_courses%>
+    <h3>Enrollments</h3>
+    <ul>
+      <% @future_user_courses.each do |course| %>
+        <li>
+              <h4><%= link_to course.name, course%></h4>
+              <p class="course_info">
+                <%= course.one_liner %>
+              </p>
+              <p class="course_info2">
+                <%= link_to course.site.name, course.site %>,
+                <%= course.lessons.order('lesson_date').first.lesson_date.to_s(:long)  %>
 
-<h3>You are enrolled in the following upcoming courses</h3>
-<ul>
-  <% @future_user_courses.each do |course| %>
-    <li><%= link_to course.name, course_path(course) %>
-           <%= course.lessons.order(:lesson_date).first.lesson_date %>
-    </li>
-  <%end%>
-</ul>
-
-<h3>Past Courses</h3>
-<ul>
-  <% @past_user_courses.each do |course| %>
-    <li><%= link_to course.name, course_path(course) %>
-          <%= course.lessons.order(:lesson_date).first.lesson_date %>
-    </li>
-  <%end%>
-</ul>
-</div>
-<div class = "span4">
-  <div class="announcements">
-
-
-    <h4>GA Announcements</h4>
-    <%=link_to "Create A New Announcement", new_announcement_path %>
-
-  <ul>
-    <% @announcements.each do |announcement| %>
-    <li>
-      <%=announcement.announcement_text %>
-      <br>
-      <% if announcement.user %>
-      Posted by:
-      <%=announcement.user.name%>
+              </p>
+            </li>
       <%end%>
-      <%= distance_of_time_in_words(Time.now, announcement.updated_at) %>
-      ago.
+    </ul>
+<%end%>
 
-    </li>
+  <%if @past_user_courses %>
+    <h3>Past Courses</h3>
+    <ul>
+      <% @past_user_courses.each do |course| %>
+        <li class= "bullet_list"><%= link_to "#{course.name} at #{course.site.name}: #{course.lessons.order("lesson_date").first.lesson_date.to_s(:long)}", course_path(course) %>
+          <% unless course.enrollments.where(user_id: current_user.id).first.grade.blank?%>
+           | Grade:
+            <%=course.enrollments.where(user_id: current_user.id).first.grade%>
+
+          <%end%>
+        </li>
+      <%end%>
+    </ul>
+    </div>
     <%end%>
-  </ul>
-  <%= link_to "See All Announcements", announcements_path%>
-  </div>
+
+
+
+
+<div class = "span4">
+    <div class="announcements">
+      <h3>GA Announcements</h3>
+      <ul>
+        <% @announcements.each do |announcement| %>
+        <li>
+         <%= link_to "#{announcement.announcement_text} | Posted #{distance_of_time_in_words(Time.now, announcement.updated_at)} ago", announcement_path(announcement) %>
+       </li>
+       <%end%>
+     </ul>
+     <%= link_to "See All Announcements", announcements_path%>
+   </div>
+
+
+
+</div>
 </div>
 
 

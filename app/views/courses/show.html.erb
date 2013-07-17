@@ -1,92 +1,133 @@
-<p id="notice"><%= notice %></p>
-
-<h4><%= @course.name %></h4>
 <%if @user %>
 <% if @course.enrollments %>
 <% if @course.enrollments.where(user_id: @user.id).first%>
 <% unless @course.enrollments.where(user_id: @user.id).first.grade.blank?%>
-<h3>
-Grade Achieved:
-<%=@course.enrollments.where(user_id: @user.id).first.grade%>
-<%end%>
-<%end%>
-<%end%>
-<%end%>
-</h3>
-<% if can? :edit, Course %>
-<%= link_to 'Edit Course Details', edit_course_path(@course) %>
-<br>
-<% end %>
+<h4>
+  Grade Achieved:
+  <%=@course.enrollments.where(user_id: @user.id).first.grade%>
+  <%end%>
+  <%end%>
+  <%end%>
+  <%end%>
+</h4>
+
+
+  <h3 class="course_title"><%= @course.name %></h3>
+
+<div class="row">
+
+
+
+<div class="span8">
+<div class="form_fields">
+<h4><%= @course.one_liner %></h4>
+
 
 <% unless @course.course_image.blank? %>
+<div class="show_course">
 <%= image_tag @course.course_image.detail.url %>
+</div>
 <% end %>
 
-<p>
-  <%= @course.one_liner %>
-</p>
+
 
 <p>
  <%= @course.description %>
 </p>
 
-<p>
-  Fee:
-  <%= @course.advertised_fee %>
-</p>
 
-<p>
-  Instructors:
+  <h4>Instructor(s)</h4>
+  <%if @instructor_enrollments%>
   <ul>
     <% @instructor_enrollments.each do |instructor_enrollment| %>
     <li><%= instructor_enrollment.user.name %></li>
   </ul>
   <%end%>
+  <%end%>
 
-</p>
+  <%unless@course.advertised_fee.blank?%>
 
-This course will take place at
-<%= @course.site.name %>
-at the following times:
+  <h4>Tuition Fee</h4>
+  <%= @course.advertised_fee %>
+<%end%>
+
+<%if @course.lessons %>
+  <h4>Schedule</h4>
 <ul>
   <% @course.lessons.each do |lesson| %>
   <li>
-    <%= lesson.lesson_date %>
-    <%= lesson.time_slot %>
+    <%= lesson.lesson_date.to_s(:long) %>:
+    <%= lesson.time_slot %> session,
     <%= lesson.classroom.name %>
   </li>
   <%end%>
-
+<%end%>
 
 </ul>
-<% if @course.users.include?(@user)  %>
-
-<%= link_to 'Disenroll Me', @course.enrollments.where(user_id: @user.id).first, method: :delete, data: { confirm: 'Are you sure?' } %>
-
-<%else%>
-<%= link_to "Enroll Me", new_enrollment_path(course_id: @course.id) %>
-<%end%>
-<br>
-<% if can? :manage, Enrollment %>
-<%= link_to "Enroll A User" ,new_enrollment_path(course_id: @course.id)%>
-<% end %>
-
-
-<%if @course.enrollments %>
-<% if (can? :edit, Course) || @course.users.include?(@user)  %>
-<p>The following users are enrolled on this course</p>
-<ul>
-  <%@course.enrollments.all.each do |enrollment| %>
-  <li><%= image_tag enrollment.user.user_image.mini.url %>
-    <%=enrollment.user.name%>
-    <%=link_to 'Edit', edit_enrollment_path(enrollment) %> |
-    <%= link_to 'Disenroll', enrollment, method: :delete, data: { confirm: 'Are you sure?' } %>
 
 
 
-  </li>
-  <br>
-  <%end%>
-</ul>
-<%end%>
-<%end%>
+
+</div>
+</div>
+
+
+<div class = span4>
+
+  <div class="navbox">
+      <ul class="nav nav-list">
+        <%if can? :manage, :all%>
+        <li class="nav-header">Enrollment Options</li>
+        <%end%>
+         <% if can? :edit, Course %>
+          <li>
+         <%= link_to 'Edit Course Details', edit_course_path(@course) %>
+          </li>
+          <% end %>
+        <li class = "active">
+        <% if @course.users.include?(@user)  %>
+         <%= link_to 'Disenroll Me', @course.enrollments.where(user_id: @user.id).first, method: :delete, data: { confirm: 'Are you sure?' } %>
+        <%else%>
+          <%= link_to "Enroll Me", new_enrollment_path(course_id: @course.id) %>
+          <%end%>
+        </li>
+        <% if can? :manage, Enrollment %>
+        <li>
+        <%= link_to "Enroll A User" ,new_enrollment_path(course_id: @course.id)%>
+      </li>
+      <% end %>
+
+      </ul>
+    </div>
+
+  <%if @course.enrollments %>
+    <div class="announcements">
+      <% if (can? :edit, Course) || @course.users.include?(@user)  %>
+      <h3>Peer Group</h3>
+      <ul>
+        <%@course.enrollments.all.each do |enrollment| %>
+        <li><%= image_tag enrollment.user.user_image.mini.url %>
+          <%=enrollment.user.name%>
+          <%if can? :manage, :all %>
+          <%=link_to 'Edit', edit_enrollment_path(enrollment) %> |
+          <%= link_to 'Disenroll', enrollment, method: :delete, data: { confirm: 'Are you sure?' } %>
+          <%end%>
+        </li>
+        <br>
+        <%end%>
+      </ul>
+      <%end%>
+      </div>
+      <%end%>
+
+
+
+
+
+
+</div>
+
+
+
+</div>
+

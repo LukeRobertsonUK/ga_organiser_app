@@ -1,14 +1,22 @@
 <h3>Log in</h3>
-    <%= form_tag sessions_path do %>
-      <div class="field">
-        <%= label_tag :email %>
-        <%= text_field_tag :email, params[:email] %>
-      </div>
-      <div class="field">
-        <%= label_tag :password %>
-        <%= password_field_tag :password %>
-      </div>
-      <div class="actions"><%= submit_tag "Log in" %></div>
-    <% end %>
 
+
+  <div class="announcements login">
+        <%= form_tag sessions_path do %>
+          <div class="field">
+            <%= label_tag :email %>
+            <%= text_field_tag :email, params[:email] %>
+          </div>
+          <div class="field">
+            <%= label_tag :password %>
+            <%= password_field_tag :password %>
+          </div>
+          <div class="actions"><%= submit_tag "Log in" %></div>
+        <% end %>
+  </div>
+
+
+  <div class="announcements login">
 <%= link_to "Register as a New User", new_user_path %>
+
+</div>

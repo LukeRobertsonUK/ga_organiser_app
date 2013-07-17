@@ -34,7 +34,7 @@ version :thumb do
     process :resize_to_fill => [150, 150]
   end
   version :detail do
-    process :resize_to_fill => [300, 300]
+    process :resize_to_fill => [400, 400]
   end
 version :mini do
     process :resize_to_fill => [30, 30]
