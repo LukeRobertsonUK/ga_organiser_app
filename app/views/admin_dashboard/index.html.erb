@@ -32,6 +32,15 @@
 
   <% if @future_courses%>
       <h3>Upcoming Courses</h3>
+
+    <%=search_form_for @q, :url=>  url_for(:admin_dashboard_controller => "q", :action => "index") do |f| %>
+      <p>
+        <%= f.text_field :name_or_one_liner_or_description_or_site_name_cont  %>
+        <%= f.submit "Search" %>
+      </p>
+    <% end %>
+
+
       <ul>
         <% @future_courses.each do |course| %>
         <li>
@@ -73,16 +82,8 @@
 
 
    <div class = "span4">
-<div class="announcements">
-    <%=search_form_for @q, :url=>  url_for(:admin_dashboard_controller => "q", :action => "index") do |f| %>
-      <p>
-        <%= f.label :name_cont, "Search Future Courses" %>
-        <%= f.text_field :name_cont  %>
-      </p>
-        <%= f.submit %>
-      </p>
-    <% end %>
-</div>
+
+
 
 
     <% if can? :manage, :all %>
