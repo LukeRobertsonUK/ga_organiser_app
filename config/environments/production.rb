@@ -56,7 +56,7 @@ GaOrganiserApp::Application.configure do
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
   # the I18n.default_locale when a translation can not be found)
-  config.i18n.fallbacks = true
+config.i18n.fallbacks = true
 
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
@@ -65,7 +65,7 @@ GaOrganiserApp::Application.configure do
   # with SQLite, MySQL, and PostgreSQL)
   # config.active_record.auto_explain_threshold_in_seconds = 0.5
 
-config.action_mailer.default_url_options = { :host => 'mysterious-beyond-7114.herokuapp.com' }
+  config.action_mailer.default_url_options = { :host => 'mysterious-beyond-7114.herokuapp.com' }
 
 
 # ActionMailer Config
@@ -96,7 +96,7 @@ CarrierWave.configure do |config|
   }
   config.fog_directory  = 'mybuckettestapp'
 end
-end
+
 
 
 end
