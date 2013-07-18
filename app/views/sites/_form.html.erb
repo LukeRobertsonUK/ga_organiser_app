@@ -11,33 +11,47 @@
     </div>
   <% end %>
 
+<div class="row">
+<div class= "span4">
+    <div class="form_fields">
+
   <div class="field">
-    <%= f.label :name %><br />
+    <%= f.label :name %>
     <%= f.text_field :name %>
   </div>
   <div class="field">
-    <%= f.label :address %><br />
+    <%= f.label :address %>
     <%= f.text_field :address %>
   </div>
   <div class="field">
-    <%= f.label :telephone %><br />
+    <%= f.label :telephone %>
     <%= f.text_field :telephone %>
   </div>
    <div class="field">
       <%= f.label :site_image %>
       <%= f.file_field :site_image %>
     </div>
-  <div class="field">
-    <%= f.label :directions %><br />
-    <%= f.text_area :directions %>
-  </div>
+
   <div class="actions">
     <%= f.submit %>
   </div>
-<% end %>
 
-   <% if @site.persisted? %>
+  </div>
+</div>
+
+  <div class="span8">
+    <div class = "form_fields">
+
+        <% if @site.persisted? %>
       <% unless @site.site_image.blank?%>
       <%= image_tag @site.site_image.thumb.url %>
           <% end %>
-    <% end %>
+      <% end %>
+     <div class="field">
+    <%= f.label :directions %>
+    <%= f.text_area :directions, class: "text_area" %>
+  </div>
+    </div>
+  </div>
+  <% end %>
+</div>

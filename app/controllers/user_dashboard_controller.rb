@@ -3,7 +3,7 @@ class UserDashboardController < ApplicationController
 
 
   def index
-      @announcements = Announcement.order('updated_at DESC').limit(5)
+      @announcements = Announcement.order('updated_at DESC').limit(10)
       @future_user_courses = current_user.courses.future.uniq
       @past_user_courses = current_user.courses.past.uniq
       @lessons = current_user.courses.map{|u| u.lessons}.flatten.sort_by(&:lesson_date)

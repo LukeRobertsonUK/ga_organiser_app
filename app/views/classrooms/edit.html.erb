@@ -1,6 +1,12 @@
-<h1>Editing classroom</h1>
+<% content_for(:header_greeting) do %>
+Facilities:
+<%end%>
+
+<h3>Edit Classroom</h3>
 
 <%= render 'form' %>
 
+<div class="announcements login">
 <%= link_to 'Show', @classroom, class:"edit_delete" %>
 <%= link_to 'Back', site_path(@classroom.site), class:"edit_delete" %>
+</div>

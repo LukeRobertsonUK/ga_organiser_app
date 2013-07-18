@@ -1,5 +1,12 @@
-<h1>New site</h1>
+<% content_for(:header_greeting) do %>
+GA Global:
+<%end%>
+
+
+<h3>Create A New Campus</h3>
 
 <%= render 'form' %>
 
-<%= link_to 'Back', sites_path %>
+<div class="announcements login">
+<%= link_to 'Back', sites_path, class:"edit_delete" %>
+</div>

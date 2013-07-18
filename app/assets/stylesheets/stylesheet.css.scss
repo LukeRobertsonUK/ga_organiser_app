@@ -49,6 +49,7 @@ $ga_grey: #EAE2DF;
 
       background:rgba(255,255,255, 0.9);
       box-shadow: 0px 0px 20px 5px $ga_grey;
+      margin-bottom: 50px;
          }
 
     .titlebar {
@@ -303,6 +304,7 @@ $ga_grey: #EAE2DF;
 }
   .lesson {
     border-bottom: 2px solid $ga_red;
+    margin-bottom: 4px;
   }
 
   #edit_course {
@@ -359,9 +361,22 @@ select {
   right: 5px;
 }
 
+.new_user_bar {
+  margin-left: 5px;
+  position: absolute;
+  top:12px;
+  left: 270px;
+}
+
+
 .future_courses_bar {
   position: relative;
 }
+
+.users_section {
+  position: relative;
+}
+
 
 .woops {
   margin-left: 10px;
@@ -467,4 +482,5 @@ a.top_right {
 .window {
   text-align: center;
 }
+
 

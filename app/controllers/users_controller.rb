@@ -5,7 +5,8 @@ class UsersController < ApplicationController
   before_filter :authenticate, except: [:new, :create]
 
   def index
-    @users = User.order("name").page params[:page]
+    @q = User.order("name").search(params[:q])
+    @users = @q.result(distinct: true).page params[:page]
 
     respond_to do |format|
       format.html # index.html.erb

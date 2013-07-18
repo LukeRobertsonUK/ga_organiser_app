@@ -11,6 +11,14 @@
 </div>
 <% end %>
 
+<div class="row">
+<% if @classroom.classroom_image.blank?%>
+<div class= "span4 offset4">
+<%else%>
+<div class= "span4 offset2">
+ <%end%>
+    <div class="form_fields">
+
 <div class="field">
   <%= f.label :site_id, "Campus" %>
   <%= f.select(:site_id, Site.all.map {|s| [s.name, s.id]}) %>
@@ -30,15 +38,24 @@
   <%= f.file_field :classroom_image %>
 </div>
 
-
-
 <div class="actions">
   <%= f.submit %>
 </div>
-<% end %>
 
-  <% if @classroom.persisted? %>
+</div>
+</div>
+<% if @classroom.persisted? %>
+  <div class="span4">
+    <div class = "form_fields">
+
+
       <% unless @classroom.classroom_image.blank?%>
-      <%= image_tag @classroom.classroom_image.thumb.url %>
+      <%= image_tag @classroom.classroom_image.detail.url %>
           <% end %>
+
+
+  </div>
+  </div>
+    <%end%>
     <% end %>
+  </div>

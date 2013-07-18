@@ -17,56 +17,77 @@
 
 
 
-  <div class="container">
+    <div class="container">
 
-    <div class="titlebar">
-      <%= image_tag 'generalassembly.png', class: "ga_logo" %>
-      <div class="sign_in">
+      <div class="titlebar">
+              <%= image_tag 'generalassembly.png', alt:"General Assembly Logo", class: "ga_logo" %>
+              <div class="sign_in">
+                  <%if current_user%>
+                    <div id="user_profile">
+                      <%= "Signed in as #{current_user.email}" %> |
+                      <%= link_to 'Sign out', session_path(session), method: :delete, data: {confirm: 'Are you sure?'} %>
+                    </div>
+                    <% unless current_user.user_image.blank?%>
+                      <div id="user_profile_image">
+                         <%= image_tag current_user.user_image.thumb.url %>
+                      </div>
+                    <%end%>
+                  <%else%>
+                    <%= link_to "Sign In" ,login_path, class:"login_status" %>
+                <%end%>
+              </div>
+
+
+
+              <% if current_user%>
+                <h1>
+                  <%=yield :header_greeting %>
+                </h1>
+              <%else%>
+                <h1>
+                  Welcome!
+                </h1>
+              <%end%>
+
+
+      </div>
+
+
+
+      <ul class="nav nav-tabs">
+        <li class="active"><%= link_to('Courses', courses_path) %></li>
+        <li><%= link_to('Campuses', sites_path) %></li>
         <%if current_user%>
-          <div id="user_profile">
-            <%= "Signed in as #{current_user.email}" %> |
-            <%= link_to 'Sign out', session_path(session), method: :delete, data: {confirm: 'Are you sure?'} %>
-          </div>
-          <% unless current_user.user_image.blank?%>
-          <div id="user_profile_image">
-            <%= image_tag current_user.user_image.thumb.url %>
-          </div>
-          <%end%>
-        <%else%>
-          <%= link_to "Sign In" ,login_path, class:"login_status" %>
-        <%end%>
-        </div>
-        <% if current_user%>
-      <h1>
-        <%=yield :header_greeting %>
-      </h1>
-    <%else%>
-      <h1>
-        Welcome!
-      </h1>
-      <%end%>
-
-    </div>
-
-    <ul class="nav nav-tabs">
-      <li class="active"><%= link_to('Courses', courses_path) %></li>
-      <li><%= link_to('Campuses', sites_path) %></li>
-              <%if current_user%>
-      <li><%= link_to("My Dashboard", dashboard_path)%></li>
-
-        <li><%= link_to("My Account", user_path(session[:user_id]))%><li>
+            <li><%= link_to("My Dashboard", dashboard_path)%></li>
+            <li><%= link_to("My Account", user_path(session[:user_id]))%><li>
         <%end %>
         <li><a href="http://www.generalassemb.ly">About GA</a></li>
       </ul>
-<div id="flash">
-    <% flash.each do |name, message| %>
-    <div class='flash-message flash-message-<%=name%>'>
-     <%"login_status"%><%=message %>
-   </div>
-   <%end%>
-</div>
+        <div id="flash">
+          <% flash.each do |name, message| %>
+          <div class='flash-message flash-message-<%=name%>'>
+           <%"login_status"%><%=message %>
+         </div>
+         <%end%>
+       </div>
 
-    <%= yield %>
+
+
+
+
+       <%= yield %>
+
+
+
+
+
+     <div class="footer">
+      <%= image_tag 'social-facebook.png', class: "icon" %>
+      <%= image_tag 'social-twitter.png', class: "icon" %>
+      <%= image_tag 'social-flickr.png', class: "icon" %>
+      <%= image_tag 'social-foursquare.png', class: "icon" %>
+    </div>
+
 
 
 
