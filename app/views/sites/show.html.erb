@@ -1,39 +1,55 @@
-<p id="notice"><%= notice %></p>
-
-
-  <h4><%= @site.name %></h4>
-
-<% unless @site.site_image.blank? %>
-<%= image_tag @site.site_image.detail.url %>
-<% end %>
-<br>
-<p>Address:
-  <%= @site.address %>
-</p>
-
-<p>Telephone:
-  <%= @site.telephone %>
-</p>
-
-<p>
-  Directions:
-  <%= @site.directions %>
-</p>
-<% unless @site.classrooms.blank?%>
-<p>
-  Classrooms:
-  <ul>
-    <% @site.classrooms.all.each do |classroom| %>
-    <li>
-      <% unless classroom.classroom_image.blank? %>
-      <%= image_tag classroom.classroom_image.mini.url %>
-      <% end %>
-      <%=link_to classroom.name, classroom %> | seating capacity:
-      <%=classroom.seating_capacity%>
-    </li>
-    <%end%>
+<% content_for(:header_greeting) do %>
+GA Global:
 <%end%>
 
+<div class="announcement_list">
 
-<%= link_to 'Edit', edit_site_path(@site) %> |
-<%= link_to 'Back', sites_path %>
+  <h3><%= @site.name %></h3>
+  <div class= "row">
+    <div class="span5">
+      <% unless @site.site_image.blank? %>
+      <%= image_tag @site.site_image.detail.url %>
+      <% end %>
+      <%unless @site.address.blank?%>
+      <p><strong>Address:</strong>
+        <%= @site.address %>
+      </p>
+      <%end%>
+      <%unless @site.telephone%>
+      <p><strong>Telephone:</strong>
+        <%= @site.telephone %>
+      </p>
+      <%end%>
+
+      <%unless @site.directions.blank?%>
+      <p><strong>Directions:</strong>
+        <%= @site.directions %>
+      </p>
+      <%end%>
+
+      <% if can? :manage, :all%>
+      <%= link_to 'Edit', edit_site_path(@site), class:"edit_delete" %>
+      <%= link_to 'Back', sites_path, class:"edit_delete" %>
+      <%end%>
+
+    </div>
+
+    <div class="span6">
+
+      <% unless @site.classrooms.blank?%>
+      <p><strong>Classrooms:</strong>
+        <ul>
+          <% @site.classrooms.all.each do |classroom| %>
+          <li><p><strong>
+            <%=link_to classroom.name, classroom %></strong> |
+            Seating Capacity:
+            <%=classroom.seating_capacity%></p>
+
+          </li>
+          <%end%>
+          <%end%>
+
+
+        </div>
+      </div>
+</div>

@@ -1,22 +1,28 @@
+<% content_for(:header_greeting) do %>
+  Community:
+<%end%>
 
 
+<h3>General Assembly Users</h3>
 
-<h1>GA Users</h1>
-
-
+<ul>
 <% @users.each do |user| %>
-
-<h5><%= link_to user.name, user %> |
-    <%= user.email %> |
-    <%= user.telephone %>
-</h5>
+<li>
+<h4><%= link_to user.name, user %></h4>
+<div class="user_row">
 <% unless user.user_image.blank? %>
 <%= image_tag user.user_image.mini.url %>
 <% end %>
-<%= link_to 'Edit', edit_user_path(user) %> |
-<%= link_to 'Delete', user, method: :delete, data: { confirm: 'Are you sure?' } %>
+  <%=mail_to user.email %> |
+<%= user.telephone %>
+<%= link_to 'Edit', edit_user_path(user), class: "edit_delete" %>
+<%= link_to 'Delete', user, method: :delete, data: { confirm: 'Are you sure?' }, class:"edit_delete" %>
+</div>
 <% end %>
-
+<ul>
 <br />
 
-<%= link_to 'New User', new_user_path %>
+<%= paginate @users, theme: 'twitter-bootstrap' %>
+<%if can? :manage, :all %>
+<%= link_to 'New User', new_user_path, class:"button" %>
+<%end%>

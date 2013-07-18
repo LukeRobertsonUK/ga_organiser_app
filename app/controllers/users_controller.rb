@@ -5,7 +5,8 @@ class UsersController < ApplicationController
   before_filter :authenticate, except: [:new, :create]
 
   def index
-    @users = User.all
+    @users = User.order("name").page params[:page]
+
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @users }

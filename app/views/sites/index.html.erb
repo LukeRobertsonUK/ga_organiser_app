@@ -1,27 +1,31 @@
 <% content_for(:header_greeting) do %>
-  GA Global:
+GA Global:
 <%end%>
+<div class="site_centerer">
+  <% @sites.each do |site| %>
+  <div class = "site_list window">
+    <h3><%= link_to site.name, site %></h3>
+    <% unless site.site_image.blank? %>
+    <%= image_tag site.site_image.thumb.url %>
+    <% end %>
+    <% unless site.address.blank?%>
+    <p><strong>Address:</strong>
+      <%= site.address %></p>
+      <%end%>
+      <%unless site.telephone.blank? %>
+      <p><strong>Telephone:</strong>
+        <%= site.telephone %></p>
+        <%end%>
+        <%if can? :manage, :all %>
+        <p><%= link_to 'Edit', edit_site_path(site), class:"edit_delete" %>
+         <%= link_to 'Delete', site, method: :delete, data: { confirm: 'Are you sure?' }, class: "edit_delete" %>
+       </p>
+       <%end%>
+     </div>
+     <% end %>
 
+     <% if can? :manage, :all %>
+     <%= link_to 'New Site', new_site_path, class: "button" %>
+     <%end%>
+   </div>
 
-<h1>GA's Global Footprint</h1>
-
-
-
-<% @sites.each do |site| %>
-
-<h3><%= link_to site.name, site %></h3>
-<% unless site.site_image.blank? %>
-<%= image_tag site.site_image.thumb.url %>
-<% end %>
-<p><%= site.address %></p>
-<td><%= site.telephone %></td>
-
-<p><%= link_to 'Edit', edit_site_path(site) %> |
-   <%= link_to 'Destroy', site, method: :delete, data: { confirm: 'Are you sure?' } %>
-</p>
-
-   <% end %>
-
-   <br />
-
-   <%= link_to 'New Site', new_site_path %>

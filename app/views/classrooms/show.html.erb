@@ -14,5 +14,5 @@
   <%= @classroom.seating_capacity %>
 </p>
 
-<%= link_to 'Edit', edit_classroom_path(@classroom) %> |
-<%= link_to 'Back', classrooms_path %>
+<%= link_to "Edit", edit_classroom_path(@classroom), class:"edit_delete" %>
+<%= link_to 'Back', site_path(@classroom.site), class:"edit_delete" %>

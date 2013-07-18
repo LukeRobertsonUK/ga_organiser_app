@@ -54,7 +54,7 @@
               <%if current_user%>
       <li><%= link_to("My Dashboard", dashboard_path)%></li>
 
-        <li><%= link_to("My Account", edit_user_path(session[:user_id]))%><li>
+        <li><%= link_to("My Account", user_path(session[:user_id]))%><li>
         <%end %>
         <li><a href="http://www.generalassemb.ly">About GA</a></li>
       </ul>

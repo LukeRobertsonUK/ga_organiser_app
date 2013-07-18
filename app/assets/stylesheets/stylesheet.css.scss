@@ -23,18 +23,18 @@ $ga_grey: #EAE2DF;
 
     .flash-message {
       text-align: center;
-      background: $ga_red;
+      background: white;
       font-family: $head_font;
-      color: white;
-      text-shadow: 0.1em 0.1em 0.2em black;
-      box-shadow: 0px 0px 20px 5px $ga_red;
+      color: $ga_red;
       margin: auto;
       margin-bottom: 10px;
       padding-left: 5px;
       padding-right: 5px;
-      border-radius: 200px;
+      border-radius: 10px;
       font-size: 80%;
       display: inline-block;
+      border: 1px solid $ga_red;
+      font-weight: bold;
     }
 
     #flash {
@@ -46,8 +46,8 @@ $ga_grey: #EAE2DF;
     background-size: cover;;
     }
     .container {
-      background: image_url('white_wall.png');
-      background-color: white;
+
+      background:rgba(255,255,255, 0.9);
       box-shadow: 0px 0px 20px 5px $ga_grey;
          }
 
@@ -231,6 +231,7 @@ $ga_grey: #EAE2DF;
       border-radius: 5px;
       padding: 5px;
       box-shadow:rgba(0,0,0,0.5) 0px 0px 24px;
+      background: image_url('white_wall.png');
     }
 
     .classroom_view li {
@@ -441,3 +442,29 @@ a.top_right {
 #announcement_announcement_text {
   width: 98%;
 }
+
+.user_row {
+  margin-left: 10px;
+  margin-top: 3px;
+
+}
+
+.site_list {
+      box-shadow: rgba(0,0,0,0.1) 0px 0px 24px;
+      border-radius: 10px;
+      padding: 5px;
+      margin: 5px;
+      background-color: white;
+      position: relative;
+      display: inline-block;
+}
+
+.site_centerer {
+  text-align: center;
+ width: 100%;
+}
+
+.window {
+  text-align: center;
+}
+

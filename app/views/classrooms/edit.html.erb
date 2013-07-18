@@ -2,5 +2,5 @@
 
 <%= render 'form' %>
 
-<%= link_to 'Show', @classroom %> |
-<%= link_to 'Back', classrooms_path %>
+<%= link_to 'Show', @classroom, class:"edit_delete" %>
+<%= link_to 'Back', site_path(@classroom.site), class:"edit_delete" %>

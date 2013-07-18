@@ -1,37 +1,46 @@
 <% content_for(:header_greeting) do %>
-  Profile:
+Profile:
 <%end%>
 
 
+<div class="announcement_list">
 
-<p id="notice"><%= notice %></p>
+  <h3><%= @user.name %></h3>
 
-<h4><%= @user.name %></h4>
+  <div class= "row">
+    <div class="span5">
+      <% unless @user.user_image.blank? %>
+      <%= image_tag @user.user_image.detail.url %>
+      <% end %>
 
-<% unless @user.user_image.blank? %>
-<%= image_tag @user.user_image.detail.url %>
-<% end %>
+      <p><%= mail_to @user.email %></p>
 
-<br>
-<p>Email:
-  <%= @user.email %>
-</p>
-<p>
-  Address:
-  <%= @user.address %>
-</p>
-<p>
-  Telephone:
-  <%= @user.telephone %>
-</p>
-<p>
-  Date of Birth:
-  <%= @user.birth_date.to_s(:long) %>
-</p>
-<p>
-  Profile:
-  <%= @user.profile %>
-</p>
-<br>
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+      <% unless @user.address.blank? %>
+      <p><strong>Address:</strong>
+        <%= @user.address %>
+      </p>
+      <%end%>
+      <% unless @user.telephone.blank?%>
+      <p><strong>Telephone:</strong>
+      <%= @user.telephone %>
+      </p>
+      <%end%>
+      <%unless @user.birth_date.blank?%>
+      <p><strong>Date of Birth:</strong>
+        <%= @user.birth_date.to_s(:long) %>
+      </p>
+      <%end%>
+
+    </div>
+
+    <div clas="span7">
+      <%unless @user.profile.blank?%>
+      <p><strong>Profile:</strong></p>
+      <p><%= @user.profile %></p>
+      <%end%>
+
+      <%= link_to 'Edit', edit_user_path(@user), class:"edit_delete" %>
+
+    </div>
+  </div>
+</div>
