@@ -47,7 +47,7 @@ class ClassroomsController < ApplicationController
 
     respond_to do |format|
       if @classroom.save
-        format.html { redirect_to @classroom, notice: 'Classroom was successfully created.' }
+        format.html { redirect_to @classroom.site, notice: 'Classroom was successfully created.' }
         format.json { render json: @classroom, status: :created, location: @classroom }
       else
         format.html { render action: "new" }
@@ -63,7 +63,7 @@ class ClassroomsController < ApplicationController
 
     respond_to do |format|
       if @classroom.update_attributes(params[:classroom])
-        format.html { redirect_to @classroom, notice: 'Classroom was successfully updated.' }
+        format.html { redirect_to @classroom.site, notice: 'Classroom was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }

@@ -37,7 +37,7 @@
 
 
 
-  <%if @instructor_enrollments%>
+  <%unless @instructor_enrollments.blank?%>
   <h4>Instructor(s)</h4>
   <ul>
     <% @instructor_enrollments.each do |instructor_enrollment| %>
@@ -49,8 +49,8 @@
 
   <%unless@course.advertised_fee.blank?%>
   <h4>Tuition Fee</h4>
-  <p>$
-    <%= @course.advertised_fee %></p>
+  <p> $
+    <%= @course.advertised_fee.round(2) %></p>
   <%end%>
 
 <%if @course.lessons %>

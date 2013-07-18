@@ -1,3 +1,9 @@
+<% content_for(:header_greeting) do %>
+  Courses:
+<%end%>
+
+
+
   <div class="row">
     <div class="span8">
 
@@ -22,7 +28,8 @@
         <ul>
           <% @lessonless_courses.each do |course| -%>
           <li>
-            <%= link_to "#{course.name} @ #{course.site.name}", edit_course_path(course)%>
+            <%= link_to "#{course.name} @ #{course.site.name}", edit_course_path(course)%> |
+             <%= link_to 'Delete', course, method: :delete, data: { confirm: 'Are you sure?' } %>
           </li>
           <%end -%>
         </ul>
@@ -30,16 +37,21 @@
       <%end -%>
 <%end%>
 
+<div class= "future_courses_bar">
   <% if @future_courses%>
-      <h3>Upcoming Courses</h3>
-
+  <h3>Upcoming Courses</h3>
+  <div class="searchbar">
     <%=search_form_for @q, :url=>  url_for(:admin_dashboard_controller => "q", :action => "index") do |f| %>
-      <p>
-        <%= f.text_field :name_or_one_liner_or_description_or_site_name_cont  %>
-        <%= f.submit "Search" %>
-      </p>
+      <%= f.text_field :name_or_one_liner_or_description_or_site_name_cont  %>
+      <%= f.submit "Search" %>
     <% end %>
+  </div>
+</div>
 
+
+      <% if @future_courses.blank? %>
+      <p class= "woops">Woops! None of our courses matched your search criteria</p>
+      <%else%>
 
       <ul>
         <% @future_courses.each do |course| %>
@@ -60,6 +72,11 @@
         <% end %>
       </ul>
     <%end%>
+    <%end%>
+
+
+
+
 
 <%if @past_courses%>
 <% if can? :manage, :all %>

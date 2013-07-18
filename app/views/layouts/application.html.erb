@@ -4,6 +4,8 @@
   <title>General Assembly</title>
   <link href='http://fonts.googleapis.com/css?family=Noto+Sans' rel='stylesheet' type='text/css'>
   <link href='http://fonts.googleapis.com/css?family=Cantora+One' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Passion+One' rel='stylesheet' type='text/css'>
+
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
@@ -33,13 +35,16 @@
         <%else%>
           <%= link_to "Sign In" ,login_path, class:"login_status" %>
         <%end%>
+        </div>
+        <% if current_user%>
+      <h1>
+        <%=yield :header_greeting %>
+      </h1>
+    <%else%>
+      <h1>
+        Welcome!
+      </h1>
 
-      </div>
-
-
-
-      <h1>Welcome!</h1>
-      <% unless current_user%>
       <p>Feel free to learn about General Assembly and browse our portfolio of upcoming courses. For the best experience, please sign in or register as a new user. </p>
       <%end%>
 
@@ -53,6 +58,7 @@
 
         <li><%= link_to("My Account", edit_user_path(session[:user_id]))%><li>
         <%end %>
+        <li><a href="http://www.generalassemb.ly">About GA</a></li>
       </ul>
 <div id="flash">
     <% flash.each do |name, message| %>

@@ -10,6 +10,12 @@ class Ability
       can :edit, User do |u|
           u.id == user.id
         end
+      can :read, User do |u|
+          u.id == user.id
+        end
+      # can :update, User do |u|
+      #     u.id == user.id
+      #   end
       can :read, Site
       can :read, Classroom
       can :read, Course

@@ -70,7 +70,7 @@ class EnrollmentsController < ApplicationController
 
     respond_to do |format|
       if @enrollment.update_attributes(params[:enrollment])
-        format.html { redirect_to @enrollment, notice: 'Enrollment was successfully updated.' }
+        format.html { redirect_to @enrollment.course, notice: 'Enrollment was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -83,10 +83,11 @@ class EnrollmentsController < ApplicationController
   # DELETE /enrollments/1.json
   def destroy
     @enrollment = Enrollment.find(params[:id])
+    @course = @enrollment.course
     @enrollment.destroy
 
     respond_to do |format|
-      format.html { redirect_to enrollments_url }
+      format.html { redirect_to @course }
       format.json { head :no_content }
     end
   end

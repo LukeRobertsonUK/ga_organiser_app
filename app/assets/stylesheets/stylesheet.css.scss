@@ -2,6 +2,7 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+$title_font: 'Passion One', cursive;
 $head_font: 'Noto Sans', sans-serif;
 $script_font: 'Alex Brush', cursive;
 $ga_red:#FF1538;
@@ -66,7 +67,7 @@ $ga_grey: #EAE2DF;
       padding-left: 60px;
       padding-bottom: 5px;
       font-size: 80px;
-      text-shadow: 0.1em 0.1em 0.2em #444444;
+      text-shadow: 0.0em 0.0em 0.2em #FFFFFF;
       font-family: $head_font;
     }
     .titlebar p {
@@ -319,7 +320,48 @@ input {
   text-decoration: none !important;
 }
 
+input[type="submit"] {
+    margin-bottom:10px;
+    border-radius: 5px;
+    border: none;
+    color: $ga_red;
+    font-weight: bold;
+    border: 1px solid $ga_red;
+    background: white;
+    font-size: 80%;
+
+}
+
+input[type="submit"]:hover {
+  background: $ga_red;
+  color: white;
+  border: 1px solid $ga_red;
+}
 
 
 
+select {
+  color: black;
+  border-radius: 5px;
+  background: white;
 
+}
+
+.enroll {
+  margin-left: 10px;
+}
+
+.searchbar {
+  margin-left: 5px;
+  position: absolute;
+  top:5px;
+  right: 5px;
+}
+
+.future_courses_bar {
+  position: relative;
+}
+
+.woops {
+  margin-left: 10px;
+}
