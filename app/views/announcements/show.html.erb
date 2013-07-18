@@ -1,17 +1,18 @@
 <% content_for(:header_greeting) do %>
-  Announcements:
+  Listen Up!
 <%end%>
-
-
 <p id="notice"><%= notice %></p>
 
-<h4><%= @announcement.announcement_text %></h4>
+<div class="announcement_list">
+
+<h3><%= @announcement.announcement_text %></h3>
 <% unless @announcement.announcement_image.blank? %>
 <%= image_tag @announcement.announcement_image.detail.url %>
+<br>
 <% end %>
 
-<br>
-
-
-<%= link_to 'Edit', edit_announcement_path(@announcement) %> |
-<%= link_to 'Back', announcements_path %>
+<%if can? :manage, :all %>
+<%= link_to 'Edit', edit_announcement_path(@announcement), class:"edit_delete" %>
+<%= link_to 'Back', announcements_path, class: "edit_delete" %>
+<%end%>
+</div>

@@ -12,6 +12,9 @@ gem 'rmagick'
 gem 'ransack'
 gem 'nested_form'
 gem 'fog', "~>1.3.1"
+gem 'bootstrap-datepicker-rails'
+gem 'kaminari'
+gem 'bootstrap-kaminari-views'
 
 group :development do
   gem 'pry-rails'

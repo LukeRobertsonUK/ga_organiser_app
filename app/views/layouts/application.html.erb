@@ -44,14 +44,12 @@
       <h1>
         Welcome!
       </h1>
-
-      <p>Feel free to learn about General Assembly and browse our portfolio of upcoming courses. For the best experience, please sign in or register as a new user. </p>
       <%end%>
 
     </div>
 
     <ul class="nav nav-tabs">
-      <li class="active"><%= link_to('Courses', admin_path) %></li>
+      <li class="active"><%= link_to('Courses', courses_path) %></li>
       <li><%= link_to('Campuses', sites_path) %></li>
               <%if current_user%>
       <li><%= link_to("My Dashboard", dashboard_path)%></li>

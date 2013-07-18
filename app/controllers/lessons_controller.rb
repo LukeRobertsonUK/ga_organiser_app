@@ -7,7 +7,7 @@ class LessonsController < ApplicationController
 
   def index
 
-    @start_date = params[:start_date].map{|k,v| v}.join("-").to_date
+    @start_date = params[:start_date].to_date
     @duration = params[:duration].to_i
     @site_id = params[:site_id]
     @site = Site.where(id: params[:site_id]).first

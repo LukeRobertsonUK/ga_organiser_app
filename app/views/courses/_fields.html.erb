@@ -1,8 +1,9 @@
 <%= f.fields_for :lessons do |lesson_form| %>
   <div class="lesson">
-  <%= lesson_form.label :lesson_date, "Lesson" %>
-  <%= lesson_form.date_select :lesson_date %>
-    <%= lesson_form.select :time_slot, ["Day", "Evening"] %>
+  <%= lesson_form.label :lesson_date, "Date" %>
+  <%= lesson_form.date_select :lesson_date, start_year: (Time.now.year - 100), end_year: (Time.now.year + 10) %>
+  <%= lesson_form.label :time_slot, "Session" %>
+  <%= lesson_form.select :time_slot, ["Day", "Evening"] %>
   <%= lesson_form.collection_select :classroom_id, Classroom.all, :id, :name%>
   <%= lesson_form.link_to_remove 'Remove' %>
 </div>

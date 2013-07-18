@@ -63,9 +63,9 @@
           <p class="course_info2">
             <%= link_to course.site.name, course.site %>,
             <%= course.lessons.order('lesson_date').first.lesson_date.to_s(:long)  %>
-            <%if can? :manage, :all%> |
-            <%= link_to 'Edit', edit_course_path(course) %> |
-            <%= link_to 'Delete', course, method: :delete, data: { confirm: 'Are you sure?' } %>
+            <%if can? :manage, :all%>
+            <%= link_to 'Edit', edit_course_path(course), class:"edit_delete" %>
+            <%= link_to 'Delete', course, method: :delete, data: { confirm: 'Are you sure?' }, class:"edit_delete" %>
             <%end%>
           </p>
         </li>
@@ -85,9 +85,9 @@
         <% @past_courses.each do |course| %>
         <li>
          <%= link_to "#{course.name} at #{course.site.name}. #{course.lessons.order("lesson_date").first.lesson_date.to_s(:long)}", course_path(course) %>
-          <%if can? :manage, :all%> |
-         <%= link_to 'Edit', edit_course_path(course) %> |
-         <%= link_to 'Delete', course, method: :delete, data: { confirm: 'Are you sure?' } %>
+          <%if can? :manage, :all%>
+         <%= link_to 'Edit', edit_course_path(course), class:"edit_delete" %>
+         <%= link_to 'Delete', course, method: :delete, data: { confirm: 'Are you sure?' }, class:"edit_delete" %>
          <%end%>
        </li>
        <% end %>
@@ -132,7 +132,7 @@
        </li>
        <%end%>
      </ul>
-     <%= link_to "See All Announcements", announcements_path%>
+     <%= link_to "See All Announcements", announcements_path, class:"button"%>
    </div>
 
 <% if can? :manage, :all %>
@@ -143,7 +143,8 @@
     <%= select_tag "site_id", options_for_select(Site.all.collect{|a| [a.name, a.id]}), options = {} %>
     <br>
     <%= label_tag :start_date, "Start Date?" %>
-    <%= select_date Date.today, prefix: :start_date %>
+    <%= text_field_tag :start_date, Date.today, id:"dp2", start_year: (Time.now.year - 5), end_year: (Time.now.year + 10) %>
+      <script>$('#dp2').datepicker({format: 'yyyy-mm-dd'});</script>
     <br>
     <%= label_tag :duration, "Period in Days?" %>
     <%= number_field_tag(:duration, value = 7, options = {}) %>

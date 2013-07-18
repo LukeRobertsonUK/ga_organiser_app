@@ -34,8 +34,9 @@
       <%= f.text_field :telephone %>
     </div>
     <div class="field">
-      <%= f.label :birth_date %>
-      <%= f.date_select :birth_date %>
+      <%= f.label :birth_date, value: Date.today %>
+      <%= f.text_field :birth_date, id:"dp2", start_year: (Time.now.year - 100), end_year: (Time.now.year + 10) %>
+      <script>$('#dp2').datepicker({format: 'yyyy-mm-dd'});</script>
     </div>
 
     <div class="field">

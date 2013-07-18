@@ -365,3 +365,79 @@ select {
 .woops {
   margin-left: 10px;
 }
+
+
+a.button {
+  color: $ga_red;
+  font-size: 80%;
+  font-weight: bold;
+  background-color: white;
+  border: 1px solid $ga_red;
+  border-radius: 5px;
+  padding: 3px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  text-decoration: none;
+  margin-bottom: 5px;
+}
+
+a.button:hover {
+   background: $ga_red;
+  color: white;
+  border: 1px solid $ga_red;
+}
+
+a.edit_delete {
+
+  color: grey;
+  font-size: 80%;
+  background-color: white;
+  border: 1px solid grey;
+  border-radius: 5px;
+  padding: 1px;
+  padding-left: 3px;
+  padding-right: 3px;
+  text-decoration: none;
+
+}
+
+a.edit_delete:hover {
+   background: black;
+  color: white;
+  border: 1px solid black;
+}
+
+a.announcement_line {
+  text-decoration: none;
+  display: block;
+  word-wrap: break-word;
+
+  font-size: 100%;
+  width: 85%;
+  line-height: 150%;
+}
+
+.announcement_list {
+      box-shadow: rgba(0,0,0,0.1) 0px 0px 24px;
+      border-radius: 10px;
+      padding: 5px;
+      margin: 5px;
+      background-color: white;
+      position: relative;
+
+
+     }
+
+.divider {
+  border-bottom: 1px solid $ga_grey;
+}
+
+a.top_right {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+}
+
+#announcement_announcement_text {
+  width: 98%;
+}

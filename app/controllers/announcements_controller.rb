@@ -6,7 +6,7 @@ class AnnouncementsController < ApplicationController
 
 
   def index
-    @announcements = Announcement.all
+     @announcements = Announcement.order('updated_at DESC').page params[:page]
 
     respond_to do |format|
       format.html # index.html.erb

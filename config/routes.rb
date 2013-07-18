@@ -22,6 +22,7 @@ GaOrganiserApp::Application.routes.draw do
   resources :enrollments
 
 
+get '/courses', to: "admin_dashboard#index", as: :courses
   resources :courses
 
 
@@ -45,7 +46,7 @@ GaOrganiserApp::Application.routes.draw do
 
   get '/login', to: "sessions#new"
 
-get '/admin', to: "admin_dashboard#index"
+
 
 get '/dashboard', to: "user_dashboard#index"
 

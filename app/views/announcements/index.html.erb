@@ -1,25 +1,33 @@
 <% content_for(:header_greeting) do %>
-  GA-PA:
+  Listen Up!
 <%end%>
 
 
-<h1>GA Announcements</h1>
+<h3>GA Announcements</h3>
+
+<div class="announcement_list">
 <ul>
 <% @announcements.each do |announcement| %>
-    <li><% unless announcement.announcement_image.blank? %>
-    <%= image_tag announcement.announcement_image.mini.url %>
-    <% end %>
-    <%= link_to announcement.announcement_text, announcement %> |
-    <%= link_to 'Edit', edit_announcement_path(announcement) %> |
-    <%= link_to 'Destroy', announcement, method: :delete, data: { confirm: 'Are you sure?' } %>
+    <li>
+    <%= link_to announcement.announcement_text, announcement, class: "announcement_line"%>
+    <div class="divider">
+    Updated:
+    <%= announcement.updated_at.to_s(:long)%>
+    <%if can? :manage, :all %>
+
+    <%= link_to 'Edit', edit_announcement_path(announcement), class:"edit_delete" %>
+    <%= link_to 'Delete', announcement, method: :delete, data: { confirm: 'Are you sure?' }, class:"edit_delete" %>
+
+    <%end%>
+    </div>
     </li>
    <%end%>
   </ul>
 
 
 
-
-
-<br />
-
-<%= link_to 'New Announcement', new_announcement_path %>
+<%= paginate @announcements, theme: 'twitter-bootstrap' %>
+<%if can? :manage, :all %>
+<%= link_to 'New Announcement', new_announcement_path, class:"button top_right" %>
+<%end%>
+</div>
