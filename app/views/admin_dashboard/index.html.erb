@@ -1,160 +1,152 @@
 <% content_for(:header_greeting) do %>
-  Courses:
+Courses:
 <%end%>
 
 
 
-  <div class="row">
-    <div class="span8">
-
-
-<% if can? :manage, :all %>
-      <% unless @clashing_lessons.blank? %>
-      <div class="warning">
-        <p>WARNING: Two or more lessons take place in the same classroom at the same time!</p>
-        <ul>
-          <% @clashing_lessons.each do |clashing_lesson| -%>
-          <li>
-            <%= link_to "#{clashing_lesson.course.name} @ #{clashing_lesson.course.site.name}: #{clashing_lesson.time_slot} session on #{clashing_lesson.lesson_date.to_s(:long)} in #{clashing_lesson.classroom.name}", edit_course_path(clashing_lesson.course)%>
-          </li>
-          <% end -%>
-        </ul>
-      </div>
-      <% end -%>
-
-      <%unless @lessonless_courses.blank?%>
-      <div class="warning">
-        <p class="warning_message">WARNING: Course(s) with no lessons!</p>
-        <ul>
-          <% @lessonless_courses.each do |course| -%>
-          <li>
-            <%= link_to "#{course.name} @ #{course.site.name}", edit_course_path(course)%> |
-             <%= link_to 'Delete', course, method: :delete, data: { confirm: 'Are you sure?' } %>
-          </li>
-          <%end -%>
-        </ul>
-      </div>
-      <%end -%>
-<%end%>
-
-<div class= "future_courses_bar">
-  <% if @future_courses%>
-  <h3>Upcoming Courses</h3>
-  <div class="searchbar">
-    <%=search_form_for @q, :url=>  url_for(:admin_dashboard_controller => "q", :action => "index") do |f| %>
-      <%= f.text_field :name_or_one_liner_or_description_or_site_name_cont  %>
-      <%= f.submit "Search" %>
-    <% end %>
-  </div>
-</div>
-
-
-      <% if @future_courses.blank? %>
-      <p class= "woops">Woops! None of our courses matched your search criteria</p>
-      <%else%>
-
-      <ul>
-        <% @future_courses.each do |course| %>
-        <li>
-          <h4><%= link_to course.name, course%></h4>
-          <p class="course_info">
-            <%= course.one_liner %>
-          </p>
-          <p class="course_info2">
-            <%= link_to course.site.name, course.site %>,
-            <%= course.lessons.order('lesson_date').first.lesson_date.to_s(:long)  %>
-            <%if can? :manage, :all%>
-            <%= link_to 'Edit', edit_course_path(course), class:"edit_delete" %>
-            <%= link_to 'Delete', course, method: :delete, data: { confirm: 'Are you sure?' }, class:"edit_delete" %>
-            <%end%>
-          </p>
-        </li>
-        <% end %>
-      </ul>
-    <%end%>
-    <%end%>
-
-
-
-
-
-<%if @past_courses%>
-<% if can? :manage, :all %>
-      <h3>Past Courses</h3>
-      <ul>
-        <% @past_courses.each do |course| %>
-        <li>
-         <%= link_to "#{course.name} at #{course.site.name}. #{course.lessons.order("lesson_date").first.lesson_date.to_s(:long)}", course_path(course) %>
-          <%if can? :manage, :all%>
-         <%= link_to 'Edit', edit_course_path(course), class:"edit_delete" %>
-         <%= link_to 'Delete', course, method: :delete, data: { confirm: 'Are you sure?' }, class:"edit_delete" %>
-         <%end%>
-       </li>
-       <% end %>
-     </ul>
-    <%end%>
-   <%end%>
-
-   </div>
-
-
-   <div class = "span4">
-
-
+<div class="row">
+  <div class="span8">
 
 
     <% if can? :manage, :all %>
-    <div class="navbox">
-      <ul class="nav nav-list">
-        <li class="nav-header">Administration</li>
-        <li class="active">
-          <%=link_to "New Course", new_course_path%>
-        </li>
+    <% unless @clashing_lessons.blank? %>
+    <div class="warning">
+      <p>WARNING: Two or more lessons take place in the same classroom at the same time!</p>
+      <ul>
+        <% @clashing_lessons.each do |clashing_lesson| -%>
         <li>
-          <%=link_to "New Announcement", new_announcement_path%>
+          <%= link_to "#{clashing_lesson.course.name} @ #{clashing_lesson.course.site.name}: #{clashing_lesson.time_slot} session on #{clashing_lesson.lesson_date.to_s(:long)} in #{clashing_lesson.classroom.name}", edit_course_path(clashing_lesson.course)%>
         </li>
-        <li>
-          <%=link_to "GA Users", users_path%>
-        </li>
-        <li>
-          <%=link_to "New Classroom", new_classroom_path%>
-        </li>
+        <% end -%>
       </ul>
     </div>
-<%end%>
+    <% end -%>
 
-    <div class="announcements">
-      <h3>GA Announcements</h3>
+    <%unless @lessonless_courses.blank?%>
+    <div class="warning">
+      <p class="warning_message">WARNING: Course(s) with no lessons!</p>
       <ul>
-        <% @announcements.each do |announcement| %>
+        <% @lessonless_courses.each do |course| -%>
         <li>
-         <%= link_to "#{announcement.announcement_text} | Posted #{distance_of_time_in_words(Time.now, announcement.updated_at)} ago", announcement_path(announcement) %>
-       </li>
-       <%end%>
-     </ul>
-     <%= link_to "See All Announcements", announcements_path, class:"button"%>
-   </div>
+          <%= link_to "#{course.name} @ #{course.site.name}", edit_course_path(course)%> |
+          <%= link_to 'Delete', course, method: :delete, data: { confirm: 'Are you sure?' } %>
+        </li>
+        <%end -%>
+      </ul>
+    </div>
+    <%end -%>
+    <%end%>
 
-<% if can? :manage, :all %>
-   <div class="announcements">
-    <h3>Classroom Utilization</h3>
-    <%= form_tag(lessons_path, method:"get") do %>
-    <%= label_tag :site_id, "Campus?" %>
-    <%= select_tag "site_id", options_for_select(Site.all.collect{|a| [a.name, a.id]}), options = {} %>
-    <br>
-    <%= label_tag :start_date, "Start Date?" %>
-    <%= text_field_tag :start_date, Date.today, id:"dp2", start_year: (Time.now.year - 5), end_year: (Time.now.year + 10) %>
-      <script>$('#dp2').datepicker({format: 'yyyy-mm-dd'});</script>
-    <br>
-    <%= label_tag :duration, "Period in Days?" %>
-    <%= number_field_tag(:duration, value = 7, options = {}) %>
-    <br>
-    <%= submit_tag("Submit") %>
-    <% end %>
+    <div class= "future_courses_bar">
+      <% if @future_courses%>
+      <h3>Upcoming Courses</h3>
+      <div class="searchbar">
+        <%=search_form_for @q, :url=>  url_for(:admin_dashboard_controller => "q", :action => "index") do |f| %>
+        <%= f.text_field :name_or_one_liner_or_description_or_site_name_cont  %>
+        <%= f.submit "Search" %>
+        <% end %>
+      </div>
+    </div>
+
+
+    <% if @future_courses.blank? %>
+    <p class= "woops">Woops! None of our courses matched your search criteria</p>
+    <%else%>
+
+    <ul>
+      <% @future_courses.each do |course| %>
+      <li>
+        <h4><%= link_to course.name, course%></h4>
+        <p class="course_info">
+          <%= course.one_liner %>
+        </p>
+        <p class="course_info2">
+          <%= link_to course.site.name, course.site %>,
+          <%= course.lessons.order('lesson_date').first.lesson_date.to_s(:long)  %>
+          <%if can? :manage, :all%>
+          <%= link_to 'Edit', edit_course_path(course), class:"edit_delete" %>
+          <%= link_to 'Delete', course, method: :delete, data: { confirm: 'Are you sure?' }, class:"edit_delete" %>
+          <%end%>
+        </p>
+      </li>
+      <% end %>
+    </ul>
+    <%end%>
+    <%end%>
+
+    <%if @past_courses%>
+    <% if can? :manage, :all %>
+    <h3>Past Courses</h3>
+    <ul>
+      <% @past_courses.each do |course| %>
+      <li>
+       <%= link_to "#{course.name} at #{course.site.name}. #{course.lessons.order("lesson_date").first.lesson_date.to_s(:long)}", course_path(course) %>
+       <%if can? :manage, :all%>
+       <%= link_to 'Edit', edit_course_path(course), class:"edit_delete" %>
+       <%= link_to 'Delete', course, method: :delete, data: { confirm: 'Are you sure?' }, class:"edit_delete" %>
+       <%end%>
+     </li>
+     <% end %>
+   </ul>
+   <%end%>
+   <%end%>
+
+ </div>
+
+
+ <div class = "span4">
+  <% if can? :manage, :all %>
+  <div class="navbox">
+    <ul class="nav nav-list">
+      <li class="nav-header">Administration</li>
+      <li class="active">
+        <%=link_to "New Course", new_course_path%>
+      </li>
+      <li>
+        <%=link_to "New Announcement", new_announcement_path%>
+      </li>
+      <li>
+        <%=link_to "GA Users", users_path%>
+      </li>
+      <li>
+        <%=link_to "New Classroom", new_classroom_path%>
+      </li>
+    </ul>
   </div>
   <%end%>
-</div>
 
+  <div class="announcements">
+    <h3>GA Announcements</h3>
+    <ul>
+      <% @announcements.each do |announcement| %>
+      <li>
+       <%= link_to "#{announcement.announcement_text} | Posted #{distance_of_time_in_words(Time.now, announcement.updated_at)} ago", announcement_path(announcement) %>
+     </li>
+     <%end%>
+   </ul>
+   <%= link_to "See All Announcements", announcements_path, class:"button"%>
+ </div>
+
+ <% if can? :manage, :all %>
+ <div class="announcements">
+  <h3>Classroom Utilization</h3>
+  <%= form_tag(lessons_path, method:"get") do %>
+  <%= label_tag :site_id, "Campus?" %>
+  <%= select_tag "site_id", options_for_select(Site.all.collect{|a| [a.name, a.id]}), options = {} %>
+  <br>
+  <%= label_tag :start_date, "Start Date?" %>
+  <%= text_field_tag :start_date, Date.today, id:"dp2", start_year: (Time.now.year - 5), end_year: (Time.now.year + 10) %>
+  <script>$('#dp2').datepicker({format: 'yyyy-mm-dd'});</script>
+  <br>
+  <%= label_tag :duration, "Period in Days?" %>
+  <%= number_field_tag(:duration, value = 7, options = {}) %>
+  <br>
+  <%= submit_tag("Submit") %>
+  <% end %>
+</div>
+<%end%>
+</div>
+</div>
 
 
 

@@ -76,10 +76,11 @@ class ClassroomsController < ApplicationController
   # DELETE /classrooms/1.json
   def destroy
     @classroom = Classroom.find(params[:id])
+    @room = @classroom
     @classroom.destroy
 
     respond_to do |format|
-      format.html { redirect_to classrooms_url }
+      format.html { redirect_to site_url(@room.site) }
       format.json { head :no_content }
     end
   end

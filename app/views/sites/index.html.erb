@@ -8,14 +8,7 @@ GA Global:
     <% unless site.site_image.blank? %>
     <%= image_tag site.site_image.thumb.url %>
     <% end %>
-    <% unless site.address.blank?%>
-    <p><strong>Address:</strong>
-      <%= site.address %></p>
-      <%end%>
-      <%unless site.telephone.blank? %>
-      <p><strong>Telephone:</strong>
-        <%= site.telephone %></p>
-        <%end%>
+
         <%if can? :manage, :all %>
         <p><%= link_to 'Edit', edit_site_path(site), class:"edit_delete" %>
          <%= link_to 'Delete', site, method: :delete, data: { confirm: 'Are you sure?' }, class: "edit_delete" %>

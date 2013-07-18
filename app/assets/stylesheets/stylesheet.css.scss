@@ -483,4 +483,13 @@ a.top_right {
   text-align: center;
 }
 
+.footer {
+  background:rgba(0,0,0, 0.75);
+  text-align: center;
+  padding: 2px;
+  border-top: 10px solid $ga_red;
+}
 
+.icon {
+  margin: 2px;
+}

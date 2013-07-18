@@ -15,7 +15,7 @@ GA Global:
         <%= @site.address %>
       </p>
       <%end%>
-      <%unless @site.telephone%>
+      <%unless @site.telephone.blank?%>
       <p><strong>Telephone:</strong>
         <%= @site.telephone %>
       </p>

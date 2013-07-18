@@ -10,6 +10,11 @@
 <% @announcements.each do |announcement| %>
     <li>
     <%= link_to announcement.announcement_text, announcement, class: "announcement_line"%>
+        <%unless announcement.announcement_image.blank? -%>
+        <%= image_tag announcement.announcement_image.mini.url %>
+        <%end%>
+
+
     <div class="divider">
     Updated:
     <%= announcement.updated_at.to_s(:long)%>
