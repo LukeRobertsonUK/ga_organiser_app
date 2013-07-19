@@ -1,3 +1,8 @@
+<% content_for(:header_greeting) do %>
+Courses:
+<%end%>
+
+
 <%if @user %>
 <% if @course.enrollments %>
 <% if @course.enrollments.where(user_id: @user.id).first%>

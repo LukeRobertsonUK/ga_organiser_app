@@ -5,12 +5,7 @@ class ClassroomsController < ApplicationController
 
 
   def index
-    @classrooms = Classroom.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @classrooms }
-    end
+   redirect_to root_path
   end
 
   # GET /classrooms/1
