@@ -55,7 +55,7 @@ module GaOrganiserApp
 
     # Enable the asset pipeline
     config.assets.enabled = true
-    config.assets.initializer_on_preconfile = false
+    config.assets.initialize_on_preconfile = false
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
