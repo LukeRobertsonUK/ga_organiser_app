@@ -82,8 +82,8 @@ config.action_mailer.smtp_settings = {
 
 
   :port      => 587,
-  :user_name => "luke.robertson@mac.com",
-  :password  => "e1c235vWBFEoRKS-ZuK1PA"
+  :user_name => ENV['MANDRILL_USERNAME'],
+  :password  => ENV['MANDRILL_API_KEY']
 }
 
 
